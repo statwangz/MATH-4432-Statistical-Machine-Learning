@@ -10,7 +10,7 @@ Instructor: Prof. YANG Can, HKUST
 
 The source files of the slides are `.rmd` files.
 
-If you are interested in how to create slides using R Markdown, you can have a look at them.
+If you are interested in how to create slides through R Markdown, you can have a look at them.
 
 For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01/Introduction.html).
 
