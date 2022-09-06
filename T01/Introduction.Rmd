@@ -161,7 +161,7 @@ square brackets []
 
 Why use [R Markdown](https://rmarkdown.rstudio.com/)?
 
-- R Markdown allows the user to integrate `R code` into a **report**
+- R Markdown allows the user to integrate **R code** into a **report**
 
 - When data changes or code changes, so does the report
 
@@ -175,7 +175,7 @@ Why use [R Markdown](https://rmarkdown.rstudio.com/)?
 
 --
 
-**I recommend you do homework assignments via a single R Markdown file, in which you can include your solutions, output the report, and then submit it on Canvas!**
+**I recommend you do your homework assignment via a single R Markdown file, in which you can include your solutions, then output a report and submit it on Canvas!**
 
 ???
 
