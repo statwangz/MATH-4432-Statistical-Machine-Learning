@@ -24,9 +24,9 @@ Instructor: Prof. YANG Can, HKUST
 
 ## Acknowledgment
  
-Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
+- Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
 
-Theme customized via Garrick Aden-Buie's R package [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer).
+- Theme customized via Garrick Aden-Buie's R package [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer).
 
-Tabbed panels created via Garrick Aden-Buie's R package [**xaringanExtra**](https://github.com/gadenbuie/xaringanExtra/).
+- Tabbed panels created via Garrick Aden-Buie's R package [**xaringanExtra**](https://github.com/gadenbuie/xaringanExtra/).
 
