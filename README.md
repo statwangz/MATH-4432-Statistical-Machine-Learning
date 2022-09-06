@@ -14,7 +14,7 @@ If you are interested in how to create slides using R Markdown, you can have a l
 
 For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01/Introduction.html).
 
-Further, remember to download `xaringan-themer.css` to get a customized **HKUST** theme.
+Further, remember to download `xaringan-themer.css` to get the customized **HKUST** theme.
 
 ## References
 
