@@ -769,7 +769,7 @@ Boolean operators can be applied pairwise
 ## Functions on vectors
 
 ```{r eval=FALSE}
-sum(vec)     # mean of vec
+sum(vec)     # sum of vec
 mean(vec)	   # mean of vec
 median(vec)	 # median of vec
 min(vec)     # the smallest element of vec
