@@ -6,6 +6,16 @@ Course homepage: https://sites.google.com/site/eeyangc/teaching/math-4432-statis
  
 Instructor: Prof. YANG Can, HKUST
 
+## Tutorial notes
+
+The source file of the slides are `.rmd` files.
+
+If you are interested in how to create slides using R Markdown, you can have a look at them.
+
+For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01/Introduction.html).
+
+Further, remember to download `xaringan-themer.css` to get customized **HKUST** theme.
+
 ## References
 
 - [94-842: Programming in R for Analytics](https://www.andrew.cmu.edu/user/achoulde/94842/), Instructor: Prof. Alexandra Chouldechova, Carnegie Mellon University
