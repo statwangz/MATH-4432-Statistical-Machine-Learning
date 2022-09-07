@@ -40,4 +40,3 @@ Further, don't forget to download `xaringan-themer.css` to get the customized **
 - Theme customized via Garrick Aden-Buie's R package [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer).
 
 - Tabbed panels created via Garrick Aden-Buie's R package [**xaringanExtra**](https://github.com/gadenbuie/xaringanExtra/).
-
