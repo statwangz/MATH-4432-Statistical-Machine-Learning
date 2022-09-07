@@ -978,7 +978,7 @@ library(<package name>)
 
 --
 
-**Recommended Packages**
+**Recommended packages**
 
 `tidyverse`, `stringr`, `ggplot2`, `data.table`, `devtools`, etc.
 
