@@ -532,7 +532,7 @@ TRUE & FALSE
 --
 
 .pull-right[
-`|` **Or** (**disjunction**), **binary**
+`|` **OR** (**disjunction**), **binary**
 
 ```{r}
 FALSE | TRUE
