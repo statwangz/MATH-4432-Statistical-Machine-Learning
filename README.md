@@ -13,7 +13,7 @@ Instructor: Prof. YANG Can, HKUST
 The source files of the slides are `.rmd` files.
 If you are interested in how to create slides through R Markdown, you can have a look at them.
 
-For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01/Introduction.html).
+For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01%20A%20brief%20introduction%20to%20R/Introduction.html).
 
 Further, don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
 
@@ -40,4 +40,3 @@ Further, don't forget to download `xaringan-themer.css` to get the customized **
 - Theme customized via Garrick Aden-Buie's R package [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer).
 
 - Tabbed panels created via Garrick Aden-Buie's R package [**xaringanExtra**](https://github.com/gadenbuie/xaringanExtra/).
-
