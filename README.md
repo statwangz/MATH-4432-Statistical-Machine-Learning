@@ -1,20 +1,21 @@
-# Tutorial Notes for MATH 4432 Statistical Machine Learning
+# Tutorial notes
 
 ## Course information
 
-Course homepage: https://sites.google.com/site/eeyangc/teaching/math-4432-statistical-machine-learning
+MATH 4432 Statistical Machine Learning
+
+Homepage: https://sites.google.com/site/eeyangc/teaching/math-4432-statistical-machine-learning
  
 Instructor: Prof. YANG Can, HKUST
 
 ## Tutorial notes
 
 The source files of the slides are `.rmd` files.
-
 If you are interested in how to create slides through R Markdown, you can have a look at them.
 
 For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01/Introduction.html).
 
-Further, remember to download `xaringan-themer.css` to get the customized **HKUST** theme.
+Further, don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
 
 ## References
 
@@ -32,7 +33,7 @@ Further, remember to download `xaringan-themer.css` to get the customized **HKUS
 
 - [统计之都](https://cosx.org/) (Capital of Statistics), an online community on statistics in China
 
-## Acknowledgment
+## Acknowledgments
  
 - Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
 
