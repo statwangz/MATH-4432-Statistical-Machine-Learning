@@ -988,11 +988,11 @@ library(<package name>)
 
 .panelset[
 
-.panel[.panel-name[Chunk 1]
+.panel[.panel-name[`Base-R`]
 
 We first use `plot()` function in Base-R
 
-```{r panelset = c(source = "Base-R", output = "Plot"),fig.align='center',out.width="50%"}
+```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
 set.seed(123)
 
 # Generate data
@@ -1006,11 +1006,11 @@ abline(lm(y_obs ~ x))
 ```
 ]
 
-.panel[.panel-name[Chunk 2]
+.panel[.panel-name[`ggplot2`]
 
 **`ggplot2`** a famous package for making beautiful graphics
 
-```{r panelset = c(source = "ggplot2", output = "Plot"),fig.align='center',out.width="50%"}
+```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
 # install.packages("ggplot2")
 library(ggplot2)
 ggplot(data = NULL, aes(x = x, y = y_obs)) +
