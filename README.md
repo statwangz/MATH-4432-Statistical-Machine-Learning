@@ -17,21 +17,9 @@ For those who are interested in the tutorial notes, directly download the `.html
 
 Further, don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
 
-## References
+## Reference
 
-- [94-842: Programming in R for Analytics](https://www.andrew.cmu.edu/user/achoulde/94842/), Instructor: Prof. Alexandra Chouldechova, Carnegie Mellon University
-
-- [R语言忍者秘笈](https://bookdown.org/yihui/r-ninja/) (Written in Chinese), 谢益辉, 肖楠
-
-- [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/), Software Carpentry
-
-## Other resources
-
-- [Advanced R](https://adv-r.hadley.nz/), Hadley Wickham (Chief Scientist at RStudio, PBC)
-
-- [Yihui Xie's homepage](https://yihui.org/), Yihui Xie (Software Engineer at RStudio, PBC)
-
-- [统计之都](https://cosx.org/) (Capital of Statistics), an online community on statistics in China
+- [An introduction to statistical learning](https://www.statlearning.com/). Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
 
 ## Acknowledgments
  
