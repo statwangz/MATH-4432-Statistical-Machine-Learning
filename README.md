@@ -8,14 +8,17 @@ Homepage: https://sites.google.com/site/eeyangc/teaching/math-4432-statistical-m
  
 Instructor: Prof. YANG Can, HKUST
 
-## Tutorial notes
+This course is open to senior undergraduates in applied mathematics, statistics, and engineering who are interested in learning from data.
+It covers hot topics in statistical learning, also known as machine learning, featured with various applications.
+
+## Tutorial files
 
 The source files of the slides are `.rmd` files.
 If you are interested in how to create slides through R Markdown, you can have a look at them.
 
-For those who are interested in the tutorial notes, directly download the `.html` files, e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01%20A%20brief%20introduction%20to%20R/Introduction.html).
-
-Further, don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
+To get a full view of the tutorial notes, I recommend you open the `.html` files (e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01%20A%20brief%20introduction%20to%20R/Introduction.html)) with your browser after you download the entire repository.
+Don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
+Typically this works best in Chrome.
 
 ## Reference
 
