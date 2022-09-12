@@ -17,7 +17,6 @@ The source files of the slides are `.Rmd` files.
 If you are interested in how to create slides through R Markdown, you can have a look at them.
 
 To get a full view of the tutorial notes, I recommend you open the `.html` files (e.g., [`Introduction.html`](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/blob/main/T01%20A%20brief%20introduction%20to%20R/Introduction.html)) with your browser after downloading the entire repository.
-Don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
 Typically this works best in Chrome.
 
 I also provide the PDF version via John Paul Helveston and Garrick Aden-Buie's R package [**renderthis**](https://github.com/jhelvy/renderthis).
