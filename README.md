@@ -1,4 +1,4 @@
-# Tutorial notes
+# Tutorials for MATH 4432 Statistical Machine Learning
 
 ## Course information
 
