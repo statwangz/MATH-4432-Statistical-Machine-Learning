@@ -20,7 +20,7 @@ To get a full view of the tutorial notes, I recommend you open the `.html` files
 Don't forget to download `xaringan-themer.css` to get the customized **HKUST** theme.
 Typically this works best in Chrome.
 
-I also provide the pdf version via John Paul Helveston and Garrick Aden-Buie's R package [**renderthis**](https://github.com/jhelvy/renderthis)
+I also provide the PDF version via John Paul Helveston and Garrick Aden-Buie's R package [**renderthis**](https://github.com/jhelvy/renderthis).
 ```r
 renderthis::to_pdf(from = "filename.Rmd", complex_slides = TRUE, partial_slides = FALSE)
 ```
