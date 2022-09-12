@@ -6,6 +6,8 @@
  
 Instructor: Prof. YANG Can, HKUST
 
+Teaching assistant: WANG Zhiwei (<zhiwei.wang@connect.ust.hk>)
+
 This course is open to senior undergraduates in applied mathematics, statistics, and engineering who are interested in learning from data.
 It covers hot topics in statistical learning, also known as machine learning, featured with various applications.
 
