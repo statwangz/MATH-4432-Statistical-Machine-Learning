@@ -281,7 +281,7 @@ ggplot(data = NULL) +
   geom_line(aes(x = log(lambda_list), y = biasSQ, color = "biasSQ"), size = 2) +
   geom_line(aes(x = log(lambda_list), y = variance, color = "variance"), size = 2) +
   geom_line(aes(x = log(lambda_list), y = biasSQ + variance, color = "biasSQ + variance"), size = 2) +
-  geom_vline(xintercept = log(lambda_list)[which.min(biasSQ + variance)], size = 2) + # Minimal error
+  geom_vline(xintercept = log(lambda_list)[which.min(biasSQ + variance)], linetype = "longdash", size = 2) + # Minimal error
   xlab("log(lambda)") +
   ylab("Error") +
   scale_color_manual(name = "Sources of error",
