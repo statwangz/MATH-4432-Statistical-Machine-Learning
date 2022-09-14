@@ -1,5 +1,8 @@
 # Tutorials for MATH 4432 Statistical Machine Learning
 
+<!--[![Github tag](https://badgen.net/github/tag/statwangz/MATH-4432-Statistical-Machine-Learning)](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/)
+[![Stars](https://img.shields.io/github/stars/statwangz/MATH-4432-Statistical-Machine-Learning?logo=GitHub&color=yellow)](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/stargazers) Download counts since September 14, 2022.-->
+
 ## Course information
 
 [MATH 4432 Statistical Machine Learning](https://sites.google.com/site/eeyangc/teaching/math-4432-statistical-machine-learning)
