@@ -1,7 +1,6 @@
 # Tutorials for MATH 4432 Statistical Machine Learning
 
-[![Github tag](https://badgen.net/github/tag/statwangz/MATH-4432-Statistical-Machine-Learning)](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/tags/)
-[![Stars](https://img.shields.io/github/stars/statwangz/MATH-4432-Statistical-Machine-Learning?logo=GitHub&color=yellow)](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/stargazers)
+[![Stars](https://img.shields.io/github/stars/statwangz/MATH-4432-Statistical-Machine-Learning)](https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/stargazers)
 
 ## Course information
 
