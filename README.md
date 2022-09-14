@@ -6,7 +6,9 @@
 <a href="https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/stargazers">
  <img alt="GitHub stars" src="https://img.shields.io/github/stars/statwangz/MATH-4432-Statistical-Machine-Learning">
 </a>
+<a>
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/statwangz/MATH-4432-Statistical-Machine-Learning">
+</a>
 
 ## Course information
 
