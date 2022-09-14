@@ -1,7 +1,7 @@
 # Tutorials for MATH 4432 Statistical Machine Learning
 
 <!-- metrics -->
-<p>
+<p align="center">
  <a href="https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/stargazers">
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/statwangz/MATH-4432-Statistical-Machine-Learning">
  </a>
