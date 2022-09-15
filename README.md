@@ -9,6 +9,9 @@
   <img alt="GitHub forks" src="https://img.shields.io/github/forks/statwangz/MATH-4432-Statistical-Machine-Learning">
  </a>
  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/statwangz/MATH-4432-Statistical-Machine-Learning">
+ <a href="https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/issues">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/statwangz/MATH-4432-Statistical-Machine-Learning">
+ </a>
 </p>
 
 ## Course information
