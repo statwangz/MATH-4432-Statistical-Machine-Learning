@@ -15,7 +15,7 @@
 
 [MATH 4432 Statistical Machine Learning](https://sites.google.com/site/eeyangc/teaching/math-4432-statistical-machine-learning)
  
-Instructor: Prof. YANG Can, HKUST
+Instructor: Prof. YANG Can
 
 Teaching assistant: WANG Zhiwei (<zhiwei.wang@connect.ust.hk>)
 
