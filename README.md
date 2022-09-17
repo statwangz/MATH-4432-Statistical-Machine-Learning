@@ -45,7 +45,7 @@ However, the “complex” slides containing panelsets or other HTML widgets / a
 
 ## Acknowledgments
 
-- The tutorial notes are modified and supplemented based on the materials of my "big acdemica brother" (大师兄) Prof. CAI Mingxuan, CityU.
+- The tutorial notes are modified and supplemented based on the materials of my "big academic brother" (大师兄) Prof. CAI Mingxuan, CityU.
  
 - Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
 
