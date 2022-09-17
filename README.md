@@ -44,6 +44,8 @@ However, the “complex” slides containing panelsets or other HTML widgets / a
 - [An Introduction to Statistical Learning: With Applications in R](https://www.statlearning.com/). Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
 
 ## Acknowledgments
+
+- The tutorial notes are supplemented and perfected based on the materials of my "big acdemica brother" (大师兄) Prof. CAI Mingxuan, CityU.
  
 - Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
 
