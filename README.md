@@ -27,6 +27,8 @@ It covers hot topics in statistical learning, also known as machine learning, fe
 
 ## Tutorial files
 
+- T01, T02, T04
+
 The source files of the slides are `.Rmd` files.
 If you are interested in how to create slides through R Markdown, you can have a look at them.
 
@@ -38,6 +40,8 @@ I also provide the PDF version via John Paul Helveston and Garrick Aden-Buie's R
 renderthis::to_pdf(from = "filename.Rmd", complex_slides = TRUE, partial_slides = FALSE)
 ```
 However, the “complex” slides containing panelsets or other HTML widgets / advanced features might not render well as a PDF.
+
+- The others are `.ipynb` files. 
 
 ## Reference
 
