@@ -49,15 +49,15 @@ class: inverse, center, middle
 
 ## Least squares
 
-Recall the least squares problem for linear regression
-`$$\hat{\beta} = \underset{\mathbf{\beta}}{\operatorname{argmin}} \sum_{i = 1}^{N} (y_i - x_i \beta)^2.$$`
+Recall the least squares (LS) problem for linear regression
+`$$\hat{\beta} = \underset{\mathbf{\beta}}{\operatorname{argmin}} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 = \underset{\mathbf{\beta}}{\operatorname{argmin}} \frac{1}{N}\sum_{i = 1}^{N} (y_i - x_i \beta)^2.$$`
 .panelset[
 
 .panel[.panel-name[A toy example]
 
 - Suppose we know the ground truth of `\(f(\cdot):f(x)=x\)`
 
-- Now given `\(\{x_n\}_{n=1}^N\)`, we have a set of observations `\(\mathcal{D}=\{(x_n,y_n)\}_{n=1}^N\)` with `$$y_n=f(x_n) + \epsilon_n,$$` where `\(\epsilon_n \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,0.1^2)\)` is random noise.
+- Now given `\(\{x_i\}_{i=1}^N\)`, we have a set of observations `\(\mathcal{D}=\{(x_i,y_i)\}_{i=1}^N\)` with `$$y_i=f(x_i) + \epsilon_i,$$` where `\(\epsilon_i \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,0.1^2)\)` is random noise.
 
 .panel[.panel-name[Code]
 
@@ -81,7 +81,7 @@ ggplot(data = NULL, aes(x = x, y = y_obs)) +
 
 ]
 
-.panel[.panel-name[Minimize the least square error]
+.panel[.panel-name[Minimize the squared loss]
 
 &lt;img src="Outliers and l1 loss_files/figure-html/unnamed-chunk-2-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
@@ -136,7 +136,7 @@ ggplot(data = NULL) +
 
 ]
 
-.panel[.panel-name[Minimize the least square error]
+.panel[.panel-name[Minimize the squared loss]
 
 &lt;img src="Outliers and l1 loss_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
@@ -148,11 +148,11 @@ ggplot(data = NULL) +
 
 ---
 
-## Brief summary of square loss
+## Brief summary of squared loss
 
 Pros
 
-- Natural, intuitive
+- Natural, intuitive (Euclidean distance)
 
 - Closed form solution
 
@@ -182,6 +182,8 @@ class: inverse, center, middle
 
 &lt;img src="Outliers and l1 loss_files/figure-html/unnamed-chunk-4-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
+--
+
 However, the bad news is that `\(l_1\)` loss function is not differentiable :(
 
 ---
@@ -207,7 +209,7 @@ $$
 hoping the sequence of minimizers `\(\left\{\mathbf{x}^k\right\}\)` will converge to optimal `\(\mathbf{x}^{\star}\)`.
 
 .footnote[
-[*] Not required in this course.
+[*] Not required in this course. Materials are form ELEC 5470 / IEDA 6100A Convex Optimization, Prof. Daniel P. Palomar, ECE, HKUST.
 ]
 
 ???
@@ -279,6 +281,12 @@ $$
 `$$u\left(t, t^k\right) \geq f(t),$$`
 `$$u\left(t^k, t^k\right)=f(t),$$` 
 `$$\frac{d}{d t} u\left(t^k, t^k\right)=\frac{d}{d t} f\left(t^k\right).$$`
+
+---
+
+## Majorizer for `\(l_1\)`-norm
+
+&lt;img src="Outliers and l1 loss_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -381,19 +389,11 @@ for (k in c(0:3)) { # Here we only repeat 4 times
 ]
 
 .panel[.panel-name[ggplot]
-&lt;img src="Outliers and l1 loss_files/figure-html/unnamed-chunk-12-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Outliers and l1 loss_files/figure-html/unnamed-chunk-13-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ]
-
----
-
-## References
-
-- Slides form ELEC 5470 / IEDA 6100A Convex Optimization, Prof. Daniel P. Palomar, ECE, HKUST
-
-- Stephen Boyd and Lieven Vandenberghe. [Convex optimization](https://web.stanford.edu/~boyd/cvxbook/). Cambridge university press, 2004.
 
 ---
 class: inverse, center, middle

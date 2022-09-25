@@ -56,17 +56,17 @@ class: inverse, center, middle
 
 ## Least squares
 
-Recall the least squares problem for linear regression
-$$\hat{\beta} = \underset{\mathbf{\beta}}{\operatorname{argmin}} \sum_{i = 1}^{N} (y_i - x_i \beta)^2.$$
+Recall the least squares (LS) problem for linear regression
+$$\hat{\beta} = \underset{\mathbf{\beta}}{\operatorname{argmin}} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 = \underset{\mathbf{\beta}}{\operatorname{argmin}} \frac{1}{N}\sum_{i = 1}^{N} (y_i - x_i \beta)^2.$$
 .panelset[
 
 .panel[.panel-name[A toy example]
 
 - Suppose we know the ground truth of $f(\cdot):f(x)=x$
 
-- Now given $\{x_n\}_{n=1}^N$, we have a set of observations $\mathcal{D}=\{(x_n,y_n)\}_{n=1}^N$ with $$y_n=f(x_n) + \epsilon_n,$$ where $\epsilon_n \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,0.1^2)$ is random noise.
+- Now given $\{x_i\}_{i=1}^N$, we have a set of observations $\mathcal{D}=\{(x_i,y_i)\}_{i=1}^N$ with $$y_i=f(x_i) + \epsilon_i,$$ where $\epsilon_i \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,0.1^2)$ is random noise.
 
-```{r panelset = c(source = "Code", output = "Minimize the least square error"),fig.align='center',out.width="40%",message=FALSE}
+```{r panelset = c(source = "Code", output = "Minimize the squared loss"),fig.align='center',out.width="40%",message=FALSE}
 set.seed(123)
 N <- 10 # Sample size
 x <- runif(N, 0, 1)
@@ -106,7 +106,7 @@ $$(x, y, y_{\text{obs}}) = (0.9, 0.9, -2),$$
 of which the noise is extremely large.
 This situation is rare, but the probability is not zero!
 
-```{r panelset = c(source = "Code", output = "Minimize the least square error"),fig.align='center',out.width="50%",message=FALSE}
+```{r panelset = c(source = "Code", output = "Minimize the squared loss"),fig.align='center',out.width="50%",message=FALSE}
 set.seed(123)
 
 x_ol <- c(x, 0.9)
@@ -131,11 +131,11 @@ ggplot(data = NULL) +
 
 ---
 
-## Brief summary of square loss
+## Brief summary of squared loss
 
 Pros
 
-- Natural, intuitive
+- Natural, intuitive (Euclidean distance)
 
 - Closed form solution
 
@@ -182,6 +182,8 @@ ggplot(data = NULL) +
     )
 ```
 
+--
+
 However, the bad news is that $l_1$ loss function is not differentiable :(
 
 ---
@@ -207,7 +209,7 @@ $$
 hoping the sequence of minimizers $\left\{\mathbf{x}^k\right\}$ will converge to optimal $\mathbf{x}^{\star}$.
 
 .footnote[
-[*] Not required in this course.
+[*] Not required in this course. Materials are form ELEC 5470 / IEDA 6100A Convex Optimization, Prof. Daniel P. Palomar, ECE, HKUST.
 ]
 
 ???
@@ -287,6 +289,33 @@ $$
 $$u\left(t, t^k\right) \geq f(t),$$
 $$u\left(t^k, t^k\right)=f(t),$$ 
 $$\frac{d}{d t} u\left(t^k, t^k\right)=\frac{d}{d t} f\left(t^k\right).$$
+
+---
+
+## Majorizer for $l_1$-norm
+
+```{r echo=FALSE,fig.align='center',out.width="60%"}
+t <- seq(-3, 3, length = 500)
+
+l1 <- abs(t)
+
+t_k <- -1
+l1_maj <- (t^2 + t_k^2) / 2 / abs(t_k)
+
+ggplot(data = NULL) +
+  geom_line(aes(x = t, y = l1, color = "l1 norm"), size = 2) +
+  geom_line(aes(x = t, y = l1_maj, color = "Majorizer"), size = 2) +
+  geom_vline(xintercept = t_k, linetype = "dashed", size = 2) +
+  scale_color_manual(name = NULL,
+                     breaks = c("l1 norm", "Majorizer"),
+                     values = c("l1 norm" = "red", "Majorizer" = "green")) +
+  xlab("t") +
+  ylab(NULL) +
+  theme(
+    text = element_text(size = 20),
+    legend.position = "bottom"
+    )
+```
 
 ---
 
@@ -387,21 +416,12 @@ for (k in c(0:3)) { # Here we only repeat 4 times
 
 .panel[.panel-name[ggplot]
 ```{r echo=FALSE,message=FALSE,fig.align='center',out.width="55%"}
-library(gridExtra)
-grid.arrange(grobs = p_list, ncol = 2)
+gridExtra::grid.arrange(grobs = p_list, ncol = 2)
 ```
 
 ]
 
 ]
-
----
-
-## References
-
-- Slides form ELEC 5470 / IEDA 6100A Convex Optimization, Prof. Daniel P. Palomar, ECE, HKUST
-
-- Stephen Boyd and Lieven Vandenberghe. [Convex optimization](https://web.stanford.edu/~boyd/cvxbook/). Cambridge university press, 2004.
 
 ---
 class: inverse, center, middle
