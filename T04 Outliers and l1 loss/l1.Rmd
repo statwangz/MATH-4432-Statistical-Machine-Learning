@@ -295,20 +295,24 @@ $$\frac{d}{d t} u\left(t^k, t^k\right)=\frac{d}{d t} f\left(t^k\right).$$
 ## Majorizer for $l_1$-norm
 
 ```{r echo=FALSE,fig.align='center',out.width="60%"}
-t <- seq(-3, 3, length = 500)
-
+t <- seq(-5, 5, length = 500)
 l1 <- abs(t)
 
-t_k <- -1
-l1_maj <- (t^2 + t_k^2) / 2 / abs(t_k)
+t_k_1 <- -3.5
+l1_maj_1 <- (t^2 + t_k_1^2) / 2 / abs(t_k_1)
+
+t_k_2 <- -1
+l1_maj_2 <- (t^2 + t_k_2^2) / 2 / abs(t_k_2)
 
 ggplot(data = NULL) +
-  geom_line(aes(x = t, y = l1, color = "l1 norm"), size = 2) +
-  geom_line(aes(x = t, y = l1_maj, color = "Majorizer"), size = 2) +
-  geom_vline(xintercept = t_k, linetype = "dashed", size = 2) +
+  geom_line(aes(x = t, y = l1, color = "l1 norm"), size = 1.5) +
+  geom_line(aes(x = t, y = l1_maj_1, color = "Majorizer_1"), size = 1.5) +
+  geom_line(aes(x = t, y = l1_maj_2, color = "Majorizer_2"), size = 1.5) +
+  geom_vline(xintercept = t_k_1, linetype = "dashed", size = 1.5) +
+  geom_vline(xintercept = t_k_2, linetype = "dashed", size = 1.5) +
   scale_color_manual(name = NULL,
-                     breaks = c("l1 norm", "Majorizer"),
-                     values = c("l1 norm" = "red", "Majorizer" = "green")) +
+                     breaks = c("l1 norm", "Majorizer_1", "Majorizer_2"),
+                     values = c("l1 norm" = "red", "Majorizer_1" = "blue", "Majorizer_2" = "green")) +
   xlab("t") +
   ylab(NULL) +
   theme(
@@ -354,13 +358,14 @@ where $w_i^k = \sqrt{\frac{1}{2\left|\left[ X \beta^ { k } - y \right]_i \right|
 
 ---
 
-## Implementation
+## Implementation (first 4 steps)
 
 .panelset[
 
 .panel[.panel-name[Initialize]
 ```{r}
 df <- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
+
 #beta_0 <- rnorm(1) # Initialize intercept
 #beta_1 <- rnorm(1) # Initialize slope
 beta_0 <- -3 # To demostrate, we fit beta_0 = -3
@@ -399,7 +404,7 @@ for (k in c(0:3)) { # Here we only repeat 4 times
   fit_l1 <- lm(y ~ x, data = df, weights = weight) # Reweighted LS for l1 norm minimization
   beta_0 <- coef(fit_l1)[1] # Update intercept
   beta_1 <- coef(fit_l1)[2] # Update slope
-  p <- ggplot(df, aes(x = x, y = y, size = weight / 2)) +
+  p <- ggplot(df, aes(x = x, y = y, size = weight / 3)) +
     geom_point(shape = 16) +
     geom_smooth(method = "lm", aes(weight = weight), size = 1.5, show.legend = FALSE) +
     theme(
@@ -417,6 +422,62 @@ for (k in c(0:3)) { # Here we only repeat 4 times
 .panel[.panel-name[ggplot]
 ```{r echo=FALSE,message=FALSE,fig.align='center',out.width="55%"}
 gridExtra::grid.arrange(grobs = p_list, ncol = 2)
+```
+
+]
+
+]
+
+---
+
+## Full implementation
+
+.panelset[
+
+.panel[.panel-name[Initialize]
+```{r}
+df <- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
+
+#beta_0 <- rnorm(1) # Initialize intercept
+#beta_1 <- rnorm(1) # Initialize slope
+beta_0 <- -3 # To demonstrate, we fit beta_0 = -3
+beta_1 <- 1 # To demonstrate, we fit beta_1 = 1
+
+tol <- 1e-6 # Convergence tolerance / criterion
+iter_max <- 5000 # Maximum number of iterations
+```
+
+]
+
+.panel[.panel-name[l1 norm minimization]
+```{r}
+l1_loss <- sum(abs(beta_0 + x_ol * beta_1 - y_obs_ol)) # l1 loss at initial point
+for (k in 0:iter_max) {
+  df$weight <- sqrt(1 / 2 / abs(beta_0 + x_ol * beta_1 - y_obs_ol))
+  fit_l1 <- lm(y ~ x, data = df, weights = weight) # Reweighted LS for l1 norm minimization
+  beta_0 <- coef(fit_l1)[1] # Update intercept
+  beta_1 <- coef(fit_l1)[2] # Update slope
+  
+  l1_loss_current <- sum(abs(beta_0 + x_ol * beta_1 - y_obs_ol)) # l1 loss in the current step
+  l1_loss <- c(l1_loss, l1_loss_current)
+  
+  # Whether converges
+  if(abs((l1_loss[k + 2] - l1_loss[k + 1]) / l1_loss[k + 1]) < tol){
+    break
+  }
+}
+```
+
+]
+
+.panel[.panel-name[Visualization]
+```{r echo=FALSE,message=FALSE,fig.align='center',out.width="55%"}
+ggplot(data = NULL, aes(x = 0:(length(l1_loss) - 1), y = l1_loss)) +
+  geom_point(size = 5) +
+  geom_line(size = 1.5) +
+  xlab("Step") +
+  ylab("l1 loss") +
+  theme(text = element_text(size = 18))
 ```
 
 ]
