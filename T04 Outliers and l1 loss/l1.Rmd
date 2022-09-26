@@ -362,7 +362,7 @@ where $w_i^k = \sqrt{\frac{1}{2\left|\left[ X \beta^ { k } - y \right]_i \right|
 
 .panelset[
 
-.panel[.panel-name[Initialize]
+.panel[.panel-name[Initialization]
 ```{r}
 df <- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
 
@@ -434,7 +434,7 @@ gridExtra::grid.arrange(grobs = p_list, ncol = 2)
 
 .panelset[
 
-.panel[.panel-name[Initialize]
+.panel[.panel-name[Initialization]
 ```{r}
 df <- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
 
