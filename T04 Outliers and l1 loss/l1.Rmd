@@ -327,14 +327,14 @@ ggplot(data = NULL) +
 
 - Now we can apply it to the $\ell_1$-norm: a quadratic majorizer of $f(\beta) = \|X \beta - y\|_1$ is
 $$
-u \left(\beta, \beta^k\right) = \sum_{i=1}^N \frac{1}{2 \left| \left[ X \beta^ { k } - y \right]_i \right| } \left( [X \beta - y]_i^2 + \left( \left[ X \beta^ { k } - y \right]_i \right)^2 \right)
+u \left(\beta, \beta^k\right) = \sum_{i=1}^N \frac{1}{2 \left| \left[ X \beta^ { k } - y \right]_i \right| } \left( [X \beta - y]_i^2 + \left( \left[ X \beta^ { k } - y \right]_i \right)^2 \right).
 $$
 
 --
 
 - Now that we have the majorizer, we can write the MM iterative algorithm for $k=0,1, \ldots$ as
 $$
-\underset{\beta}{\operatorname{minimize}} ||(X \beta - y) \odot w^k ||_2^2
+\underset{\beta}{\operatorname{minimize}} ||(X \beta - y) \odot w^k ||_2^2,
 $$
 where $w_i^k = \sqrt{\frac{1}{2\left|\left[ X \beta^ { k } - y \right]_i \right|}}$.
 
