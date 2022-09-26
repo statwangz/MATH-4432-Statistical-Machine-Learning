@@ -336,8 +336,8 @@ df &lt;- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Dat
 
 #beta_0 &lt;- rnorm(1) # Initialize intercept
 #beta_1 &lt;- rnorm(1) # Initialize slope
-beta_0 &lt;- -3 # To demostrate, we fit beta_0 = -3
-beta_1 &lt;- 1 # To demostrate, we fit beta_1 = 1
+beta_0 &lt;- -3 # To demonstrate, we fit beta_0 = -3
+beta_1 &lt;- 1 # To demonstrate, we fit beta_1 = 1
 ```
 
 ]
@@ -369,7 +369,7 @@ for (k in 0:3) { # Here we only repeat 4 times
 
 ```r
 p_list &lt;- list() # Figure list
-for (k in c(0:3)) { # Here we only repeat 4 times
+for (k in c(1:4)) { # Here we only repeat 4 times
   df$weight &lt;- sqrt(1 / 2 / abs(beta_0 + x_ol * beta_1 - y_obs_ol))
   fit_l1 &lt;- lm(y ~ x, data = df, weights = weight) # Reweighted LS for l1 norm minimization
   beta_0 &lt;- coef(fit_l1)[1] # Update intercept
@@ -422,7 +422,7 @@ iter_max &lt;- 5000 # Maximum number of iterations
 
 ```r
 l1_loss &lt;- sum(abs(beta_0 + x_ol * beta_1 - y_obs_ol)) # l1 loss at initial point
-for (k in 0:iter_max) {
+for (k in 1:iter_max) {
   df$weight &lt;- sqrt(1 / 2 / abs(beta_0 + x_ol * beta_1 - y_obs_ol))
   fit_l1 &lt;- lm(y ~ x, data = df, weights = weight) # Reweighted LS for l1 norm minimization
   beta_0 &lt;- coef(fit_l1)[1] # Update intercept
@@ -432,7 +432,7 @@ for (k in 0:iter_max) {
   l1_loss &lt;- c(l1_loss, l1_loss_current)
   
   # Whether converges
-  if(abs((l1_loss[k + 2] - l1_loss[k + 1]) / l1_loss[k + 1]) &lt; tol){
+  if(abs((l1_loss[k + 1] - l1_loss[k]) / l1_loss[k]) &lt; tol){
     break
   }
 }
