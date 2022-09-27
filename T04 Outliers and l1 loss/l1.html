@@ -50,7 +50,7 @@ class: inverse, center, middle
 ## Least squares
 
 Recall the least squares (LS) problem for linear regression
-`$$\hat{\beta} = \underset{\mathbf{\beta}}{\operatorname{argmin}} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 = \underset{\mathbf{\beta}}{\operatorname{argmin}} \frac{1}{N}\sum_{i = 1}^{N} (y_i - x_i \beta)^2.$$`
+`$$\hat{\beta} = \underset{\mathbf{\beta}}{\operatorname{argmin}} \sum_{i = 1}^{N} (y_i - x_i^T \beta)^2 = \underset{\mathbf{\beta}}{\operatorname{argmin}} \frac{1}{N}\sum_{i = 1}^{N} (y_i - x_i^T \beta)^2.$$`
 .panelset[
 
 .panel[.panel-name[A toy example]
@@ -69,11 +69,11 @@ y0 &lt;- x # Ground truth
 y_obs &lt;- y0 + rnorm(N, mean = 0, sd = 0.1) # Add noise, observed data
 ggplot(data = NULL, aes(x = x, y = y_obs)) +
   geom_point(aes(x = x, y = y_obs), size = 5) +
-  geom_smooth(method = "lm", size = 1.5) +
+  geom_smooth(method = "lm", size = 2) +
   theme(
-    text = element_text(size = 18),
-    axis.text.y = element_text(size = 18),
-    axis.text.x = element_text(size = 18)
+    text = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    axis.text.x = element_text(size = 20)
     )
 ```
 
@@ -114,8 +114,6 @@ This situation is rare, but the probability is not zero!
 .panel[.panel-name[Code]
 
 ```r
-set.seed(123)
-
 x_ol &lt;- c(x, 0.9)
 y0_ol &lt;- c(y0, 0.9)
 y_obs_ol &lt;- c(y_obs, -2) # Add noise, observed data
@@ -123,12 +121,12 @@ y_obs_ol &lt;- c(y_obs, -2) # Add noise, observed data
 ggplot(data = NULL) +
   geom_point(aes(x = x, y = y_obs), size = 5) +
   geom_point(aes(x = 0.9, y = -2), color = "red", size = 5) +
-  geom_smooth(aes(x = x, y = y_obs), method = "lm", color = "blue", size = 1.5) +
-  geom_smooth(aes(x = x_ol, y = y_obs_ol), method = "lm", color = "red", size = 1.5) +
+  geom_smooth(aes(x = x, y = y_obs), method = "lm", color = "blue", size = 2) +
+  geom_smooth(aes(x = x_ol, y = y_obs_ol), method = "lm", color = "red", size = 2) +
   theme(
-    text = element_text(size = 18),
-    axis.text.y = element_text(size = 18),
-    axis.text.x = element_text(size = 18)
+    text = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    axis.text.x = element_text(size = 20)
     )
 ```
 
@@ -173,8 +171,8 @@ class: inverse, center, middle
 `$$||x||_2 = \left( \sum_{j = 1}^{p} x_j^2\right)^{\frac{1}{2}}, \quad ||x||_1 = \sum_{j = 1}^{p} |x_j|.$$`
 
 - `\(l_2\)` loss and `\(l_1\)` loss
-`$$\mathcal{L}_2 = \sum_{i = 1}^{N} (y_i - x_i \beta)^2 = ||y - X \beta||_2^2, \\
-\mathcal{L}_1 = \sum_{i = 1}^{N} |y_i - x_i \beta| = ||y - X \beta||_1.$$`
+`$$\mathcal{L}_2 = \sum_{i = 1}^{N} (y_i - x_i^T \beta)^2 = ||y - X \beta||_2^2, \\
+\mathcal{L}_1 = \sum_{i = 1}^{N} |y_i - x_i^T \beta| = ||y - X \beta||_1.$$`
 
 ---
 
@@ -294,14 +292,14 @@ $$
 
 - Now we can apply it to the `\(\ell_1\)`-norm: a quadratic majorizer of `\(f(\beta) = \|X \beta - y\|_1\)` is
 $$
-u \left(\beta, \beta^k\right) = \sum_{i=1}^N \frac{1}{2 \left| \left[ X \beta^ { k } - y \right]_i \right| } \left( [X \beta - y]_i^2 + \left( \left[ X \beta^ { k } - y \right]_i \right)^2 \right)
+u \left(\beta, \beta^k\right) = \sum_{i=1}^N \frac{1}{2 \left| \left[ X \beta^ { k } - y \right]_i \right| } \left( [X \beta - y]_i^2 + \left( \left[ X \beta^ { k } - y \right]_i \right)^2 \right).
 $$
 
 --
 
 - Now that we have the majorizer, we can write the MM iterative algorithm for `\(k=0,1, \ldots\)` as
 $$
-\underset{\beta}{\operatorname{minimize}} ||(X \beta - y) \odot w^k ||_2^2
+\underset{\beta}{\operatorname{minimize}} ||(X \beta - y) \odot w^k ||_2^2,
 $$
 where `\(w_i^k = \sqrt{\frac{1}{2\left|\left[ X \beta^ { k } - y \right]_i \right|}}\)`.
 
