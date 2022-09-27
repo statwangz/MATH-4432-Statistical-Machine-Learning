@@ -463,7 +463,7 @@ The subgradient of `\(l_1\)`-norm can be taken as
 **Note**: subgradient method is **not** a descent method, and negative subgradient is **not** always a descent direction!
 
 .footnote[
-[*] Materials are from [Subgradients](https://see.stanford.edu/materials/lsocoee364b/01-subgradients_notes.pdf) and [Subgradient Methods](https://web.stanford.edu/class/ee392o/subgrad_method.pdf), Stephen Boyd and Lieven Vandenberghe, EE364b, Stanford University.
+[*] Materials are from [Subgradients](https://see.stanford.edu/materials/lsocoee364b/01-subgradients_notes.pdf) and [Subgradient Methods](https://web.stanford.edu/class/ee392o/subgrad_method.pdf), EE364b, Stephen Boyd and Lieven Vandenberghe, Stanford University.
 ]
 
 ---
@@ -475,8 +475,13 @@ The subgradient of `\(l_1\)`-norm can be taken as
 .panel[.panel-name[Initialization and parameter setting]
 
 ```r
+#beta_0 &lt;- rnorm(1) # Initialize intercept
+#beta_1 &lt;- rnorm(1) # Initialize slope
+beta_0 &lt;- -3 # To demonstrate, we fit beta_0 = -3
+beta_1 &lt;- 1 # To demonstrate, we fit beta_1 = 1
+beta &lt;- c(beta_0 = beta_0, beta_1 = beta_1) # Initialize
+
 X &lt;- cbind(x0 = rep(1, length(x_ol)), x1 = x_ol)
-beta &lt;- c(beta_0 = -3, beta_1 = 1) # Initialize
 l1_loss &lt;- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss at initial point
 
 step_size &lt;- 0.05 # Try different step size, e.g., 0.1 and 0.01, and see what will happen!
