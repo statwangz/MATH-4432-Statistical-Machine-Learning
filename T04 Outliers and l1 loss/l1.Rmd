@@ -109,7 +109,7 @@ This situation is rare, but the probability is not zero!
 ```{r panelset = c(source = "Code", output = "Minimize the squared loss"),fig.align='center',out.width="50%",message=FALSE}
 x_ol <- c(x, 0.9)
 y0_ol <- c(y0, 0.9)
-y_obs_ol <- c(y_obs, -2) # Add noise, observed data
+y_obs_ol <- c(y_obs, -2)
 
 ggplot(data = NULL) +
   geom_point(aes(x = x, y = y_obs), size = 5) +
