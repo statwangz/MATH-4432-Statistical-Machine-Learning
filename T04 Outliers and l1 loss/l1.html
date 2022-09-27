@@ -479,7 +479,7 @@ The subgradient of `\(l_1\)`-norm can be taken as
 #beta_1 &lt;- rnorm(1) # Initialize slope
 beta_0 &lt;- -3 # To demonstrate, we fit beta_0 = -3
 beta_1 &lt;- 1 # To demonstrate, we fit beta_1 = 1
-beta &lt;- c(beta_0 = beta_0, beta_1 = beta_1) # Initialize
+beta &lt;- c(beta_0 = beta_0, beta_1 = beta_1)
 
 X &lt;- cbind(x0 = rep(1, length(x_ol)), x1 = x_ol)
 l1_loss &lt;- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss at initial point
@@ -495,7 +495,7 @@ iter_max &lt;- 5000 # Maximum number of iterations
 ```r
 for (k in 1:iter_max) {
   r &lt;- as.vector(y_obs_ol - X %*% as.matrix(c(beta))) # Residual
-  subgrad &lt;- colSums(X * sign(r)) # Subgradients
+  subgrad &lt;- colSums(X * sign(r)) # Subgradient
   
   beta &lt;- beta + step_size * subgrad # Update beta
 

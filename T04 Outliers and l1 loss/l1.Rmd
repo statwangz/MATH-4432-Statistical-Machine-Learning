@@ -523,7 +523,7 @@ $$g_i=
 #beta_1 <- rnorm(1) # Initialize slope
 beta_0 <- -3 # To demonstrate, we fit beta_0 = -3
 beta_1 <- 1 # To demonstrate, we fit beta_1 = 1
-beta <- c(beta_0 = beta_0, beta_1 = beta_1) # Initialize
+beta <- c(beta_0 = beta_0, beta_1 = beta_1)
 
 X <- cbind(x0 = rep(1, length(x_ol)), x1 = x_ol)
 l1_loss <- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss at initial point
@@ -538,7 +538,7 @@ iter_max <- 5000 # Maximum number of iterations
 ```{r}
 for (k in 1:iter_max) {
   r <- as.vector(y_obs_ol - X %*% as.matrix(c(beta))) # Residual
-  subgrad <- colSums(X * sign(r)) # Subgradients
+  subgrad <- colSums(X * sign(r)) # Subgradient
   
   beta <- beta + step_size * subgrad # Update beta
 
