@@ -212,10 +212,6 @@ hoping the sequence of minimizers $\left\{\mathbf{x}^k\right\}$ will converge to
 [*] Not required in this course. Materials are form ELEC 5470 / IEDA 6100A Convex Optimization, Prof. Daniel P. Palomar, ECE, HKUST.
 ]
 
-???
-
-Close your eyes and cover your ears.
-
 ---
 
 ## Iterative algorithm
@@ -436,7 +432,7 @@ gridExtra::grid.arrange(grobs = p_list, ncol = 2)
 
 .panelset[
 
-.panel[.panel-name[Initialization]
+.panel[.panel-name[Initialization and parameter setting]
 ```{r}
 df <- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
 
@@ -461,6 +457,87 @@ for (k in 1:iter_max) {
   beta_1 <- coef(fit_l1)[2] # Update slope
   
   l1_loss_current <- sum(abs(beta_0 + x_ol * beta_1 - y_obs_ol)) # l1 loss in the current step
+  l1_loss <- c(l1_loss, l1_loss_current)
+  
+  # Whether converges
+  if(abs((l1_loss[k + 1] - l1_loss[k]) / l1_loss[k]) < tol){
+    break
+  }
+}
+```
+
+]
+
+.panel[.panel-name[Visualization]
+```{r echo=FALSE,message=FALSE,fig.align='center',out.width="55%"}
+ggplot(data = NULL, aes(x = 0:(length(l1_loss) - 1), y = l1_loss)) +
+  geom_point(size = 5) +
+  geom_line(size = 1.5) +
+  xlab("Step") +
+  ylab("l1 loss") +
+  theme(
+    text = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    axis.text.x = element_text(size = 20)
+    )
+```
+
+]
+
+]
+
+---
+
+## Subgradient method <sup>*</sup>
+
+We say a vector $g \in \mathbf{R}^n$ is a subgradient of $f: \mathbf{R}^n \rightarrow \mathbf{R}$ at $x \in \operatorname{dom} f$ if for all $z \in \operatorname{dom} f$,
+$$
+f(z) \geq f(x)+g^T(z-x).
+$$
+
+The subgradient of $l_1$-norm can be taken as
+$$g_i= 
+\begin{equation}
+\begin{cases}+1 & x_i>0 \\ 
+-1 & x_i<0 \\ 
+[-1, \  +1] & x_i=0\end{cases}
+\end{equation}.$$
+
+--
+
+**Note**: subgradient method is **not** a descent method, and negative subgradient is **not** always a descent direction!
+
+.footnote[
+[*] Materials are from [Subgradients](https://see.stanford.edu/materials/lsocoee364b/01-subgradients_notes.pdf) and [Subgradient Methods](https://web.stanford.edu/class/ee392o/subgrad_method.pdf), Stephen Boyd and Lieven Vandenberghe, EE364b, Stanford University.
+]
+
+---
+
+## Implementation
+
+.panelset[
+
+.panel[.panel-name[Initialization and parameter setting]
+```{r}
+X <- cbind(x0 = rep(1, length(x_ol)), x1 = x_ol)
+beta <- c(beta_0 = -3, beta_1 = 1) # Initialize
+l1_loss <- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss at initial point
+
+step_size <- 0.05 # Try different step size, e.g., 0.1 and 0.01, and see what will happen!
+tol <- 1e-3 # Convergence tolerance / criterion
+iter_max <- 5000 # Maximum number of iterations
+```
+]
+
+.panel[.panel-name[Implementation]
+```{r}
+for (k in 1:iter_max) {
+  r <- as.vector(y_obs_ol - X %*% as.matrix(c(beta))) # Residual
+  subgrad <- colSums(X * sign(r)) # Subgradients
+  
+  beta <- beta + step_size * subgrad # Update beta
+
+  l1_loss_current <- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss in the current step
   l1_loss <- c(l1_loss, l1_loss_current)
   
   # Whether converges

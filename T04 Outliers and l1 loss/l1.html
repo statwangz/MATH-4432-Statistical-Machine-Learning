@@ -210,10 +210,6 @@ hoping the sequence of minimizers `\(\left\{\mathbf{x}^k\right\}\)` will converg
 [*] Not required in this course. Materials are form ELEC 5470 / IEDA 6100A Convex Optimization, Prof. Daniel P. Palomar, ECE, HKUST.
 ]
 
-???
-
-Close your eyes and cover your ears.
-
 ---
 
 ## Iterative algorithm
@@ -400,7 +396,7 @@ for (k in c(1:4)) { # Here we only repeat 4 times
 
 .panelset[
 
-.panel[.panel-name[Initialization]
+.panel[.panel-name[Initialization and parameter setting]
 
 ```r
 df &lt;- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
@@ -440,6 +436,78 @@ for (k in 1:iter_max) {
 
 .panel[.panel-name[Visualization]
 &lt;img src="l1_files/figure-html/unnamed-chunk-16-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+
+---
+
+## Subgradient method &lt;sup&gt;*&lt;/sup&gt;
+
+We say a vector `\(g \in \mathbf{R}^n\)` is a subgradient of `\(f: \mathbf{R}^n \rightarrow \mathbf{R}\)` at `\(x \in \operatorname{dom} f\)` if for all `\(z \in \operatorname{dom} f\)`,
+$$
+f(z) \geq f(x)+g^T(z-x).
+$$
+
+The subgradient of `\(l_1\)`-norm can be taken as
+`$$g_i= 
+\begin{equation}
+\begin{cases}+1 &amp; x_i&gt;0 \\ 
+-1 &amp; x_i&lt;0 \\ 
+[-1, \  +1] &amp; x_i=0\end{cases}
+\end{equation}.$$`
+
+--
+
+**Note**: subgradient method is **not** a descent method, and negative subgradient is **not** always a descent direction!
+
+.footnote[
+[*] Materials are from [Subgradients](https://see.stanford.edu/materials/lsocoee364b/01-subgradients_notes.pdf) and [Subgradient Methods](https://web.stanford.edu/class/ee392o/subgrad_method.pdf), Stephen Boyd and Lieven Vandenberghe, EE364b, Stanford University.
+]
+
+---
+
+## Implementation
+
+.panelset[
+
+.panel[.panel-name[Initialization and parameter setting]
+
+```r
+X &lt;- cbind(x0 = rep(1, length(x_ol)), x1 = x_ol)
+beta &lt;- c(beta_0 = -3, beta_1 = 1) # Initialize
+l1_loss &lt;- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss at initial point
+
+step_size &lt;- 0.05 # Try different step size, e.g., 0.1 and 0.01, and see what will happen!
+tol &lt;- 1e-3 # Convergence tolerance / criterion
+iter_max &lt;- 5000 # Maximum number of iterations
+```
+]
+
+.panel[.panel-name[Implementation]
+
+```r
+for (k in 1:iter_max) {
+  r &lt;- as.vector(y_obs_ol - X %*% as.matrix(c(beta))) # Residual
+  subgrad &lt;- colSums(X * sign(r)) # Subgradients
+  
+  beta &lt;- beta + step_size * subgrad # Update beta
+
+  l1_loss_current &lt;- sum(abs(beta[1] + x_ol * beta[2] - y_obs_ol)) # l1 loss in the current step
+  l1_loss &lt;- c(l1_loss, l1_loss_current)
+  
+  # Whether converges
+  if(abs((l1_loss[k + 1] - l1_loss[k]) / l1_loss[k]) &lt; tol){
+    break
+  }
+}
+```
+
+]
+
+.panel[.panel-name[Visualization]
+&lt;img src="l1_files/figure-html/unnamed-chunk-19-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ]
 
