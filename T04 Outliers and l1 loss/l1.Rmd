@@ -196,7 +196,7 @@ class: inverse, center, middle
 ## MM algorithm <sup>*</sup>
 
 The "MM" stands for “Majorization-Minimization” or “Minorization-Maximization”.
-In the following "MM" refers to "Majorization-Minimization".
+In the following, "MM" refers to "Majorization-Minimization".
 
 - Consider the following presumably difficult optimization problem
 $$\underset{\mathbf{x}}{\operatorname{minimize}} f(\mathbf{x}) \\
