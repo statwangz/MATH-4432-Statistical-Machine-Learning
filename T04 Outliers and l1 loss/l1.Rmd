@@ -75,6 +75,7 @@ y_obs <- y0 + rnorm(N, mean = 0, sd = 0.1) # Add noise, observed data
 ggplot(data = NULL, aes(x = x, y = y_obs)) +
   geom_point(aes(x = x, y = y_obs), size = 5) +
   geom_smooth(method = "lm", size = 2) +
+  ylab("y") +
   theme(
     text = element_text(size = 20),
     axis.text.y = element_text(size = 20),
@@ -116,6 +117,7 @@ ggplot(data = NULL) +
   geom_point(aes(x = 0.9, y = -2), color = "red", size = 5) +
   geom_smooth(aes(x = x, y = y_obs), method = "lm", color = "blue", size = 2) +
   geom_smooth(aes(x = x_ol, y = y_obs_ol), method = "lm", color = "red", size = 2) +
+  ylab("y") +
   theme(
     text = element_text(size = 20),
     axis.text.y = element_text(size = 20),
@@ -309,7 +311,7 @@ ggplot(data = NULL) +
   scale_color_manual(name = NULL,
                      breaks = c("l1 norm", "Majorizer_1", "Majorizer_2"),
                      values = c("l1 norm" = "red", "Majorizer_1" = "blue", "Majorizer_2" = "green")) +
-  xlab("t") +
+  xlab(NULL) +
   ylab(NULL) +
   theme(
     text = element_text(size = 20),
@@ -500,7 +502,7 @@ $$g_i=
 \begin{equation}
 \begin{cases}+1 & x_i>0 \\ 
 -1 & x_i<0 \\ 
-[-1, \  +1] & x_i=0\end{cases}
+0 & x_i=0\end{cases}
 \end{equation}.$$
 
 --
