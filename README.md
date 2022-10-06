@@ -12,6 +12,9 @@
  <a href="https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/issues">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/statwangz/MATH-4432-Statistical-Machine-Learning">
  </a>
+ <a href="https://github.com/statwangz/MATH-4432-Statistical-Machine-Learning/issues?q=is%3Aissue+is%3Aclosed">
+  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/statwangz/MATH-4432-Statistical-Machine-Learning">
+ </a>
 </p>
 
 ## Course information
