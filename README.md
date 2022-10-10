@@ -42,7 +42,7 @@ I also provide the PDF version via John Paul Helveston and Garrick Aden-Buie's R
 ```r
 renderthis::to_pdf(from = "filename.Rmd", complex_slides = TRUE, partial_slides = FALSE)
 ```
-However, the “complex” slides containing panelsets or other HTML widgets / advanced features might not render well as a PDF.
+**However, the “complex” slides containing panelsets or other HTML widgets / advanced features might not render well as a PDF.**
 
 - The others are `.ipynb` files. 
 
