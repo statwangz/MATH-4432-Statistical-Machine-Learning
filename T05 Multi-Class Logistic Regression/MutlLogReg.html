@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>T05: Multiclass Logistic Regression</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="WANG Zhiwei" />
+    <meta name="date" content="2022-10-11" />
+    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# T05: Multiclass Logistic Regression
+]
+.subtitle[
+## MATH 4432 Statistical Machine Learning
+]
+.author[
+### WANG Zhiwei
+]
+.institute[
+### MATH, HKUST
+]
+.date[
+### 2022-10-11
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+class: inverse, center, middle
+
+# Let's first recall what we have learned in class!
+
+---
+
+## Logistic regression for classification
+
+- Training set `\(\mathcal{D}=\left\{\mathbf{x}_i, y_i\right\}_{i=1}^N\)`, where `\(y_i \in\{0,1\}\)`.
+
+--
+
+- Probabilistic model
+$$
+p(y \mid \mathbf{x}, \beta)=\operatorname{Ber}\left(y \mid \sigma\left(\beta^{\top} \mathbf{x}\right)\right)
+$$
+    - `\(\sigma(z)\)` is the sigmoid/logistic/logit function.
+        $$
+        \sigma(z)=\frac{1}{1+\exp (-z)}=\frac{e^z}{e^z+1}
+        $$
+    - It maps `\(\mathbb{R}\)` to `\((0,1)\)`.
+    
+---
+
+## Logit function
+    
+&lt;img src="MutlLogReg_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Joint probability
+
+- Recall that, the likelihood is the joint probability function of joint density function of the data.
+
+- Here, we have independent observations `\(\left(\mathbf{x}_i, y_i\right), i=1, \ldots, n\)`, each follows the (conditional) distribution
+$$
+\operatorname{Pr}\left(y_i=1 \mid \mathbf{x}_i\right)=\frac{1}{1+\exp \left(-\beta^T \mathbf{x}_i\right)}=1-\operatorname{Pr}\left(y_i=0 \mid \mathbf{x}_i\right)
+$$
+
+- So, the joint probability function is
+`$$\prod_{i=1, \ldots, n ; y_i=1} \operatorname{Pr}\left(y_i=1 \mid \mathbf{x}_i\right) \prod_{i=1, \ldots, n ; y_i=0} \operatorname{Pr}\left(y_i=0 \mid \mathbf{x}_i\right)$$`
+which can be conveniently written as
+$$
+\prod_{i=1}^n \frac{\exp \left(y_i \beta^T \mathbf{x}_i\right)}{1+\exp \left(\beta^T \mathbf{x}_i\right)}
+$$
+
+---
+
+## The maximum likelihood estimation
+
+- The likelihood function is the same as the joint probability function, but viewed as a function of `\(\beta\)`. The log-likelihood function is
+$$
+\ell=\sum_{i=1}^n\left[y_i \beta^T x_i-\log \left(1+\exp \left(\beta^T \mathbf{x}_i\right)\right)\right]
+$$
+
+- Unlike linear regression, we can no longer write down the MLE in closed form. Instead, we need to use optimization algorithms to compute it.
+    - Gradient descent
+    - Newton’s method
+
+---
+class: inverse, center, middle
+
+# Now let's go to multiclass logistic regression!
+
+---
+
+## A set of independent binary regressions
+
+We now extend the two-class logistic regression approach to the setting of `\(K &gt; 2\)` classes.
+This extension is known as multiclass logistic regression or multinomial logistic regression.
+
+--
+
+To do this, we first select a single class to serve as the **baseline** (why?); without loss of generality, we select the `\(K\)`-th class for this role.
+Then
+`$$\log \frac{\operatorname{Pr}\left(Y_i=k\right)}{\operatorname{Pr}\left(Y_i=K\right)}=\boldsymbol{\beta}_k^T \mathbf{x}_i ,$$`
+for `\(k=1, \ldots, K-1\)`.
+**Notice that the log odds between any pair of classes is linear in the features.**
+
+--
+
+We have introduced separate sets of regression coefficients, one for each possible outcome.
+If we exponentiate both sides, and solve for the probabilities, we get
+`$$\operatorname{Pr}\left(Y_i=k\right)=\operatorname{Pr}\left(Y_i=K\right) e^{\beta_k^T \mathbf{x}_i} .$$`
+---
+
+## Sum `\(K\)` probabilities
+
+Using the fact that all `\(K\)` of the probabilities must sum to one, we find
+`$$\operatorname{Pr}\left(Y_i=K\right)=1-\sum_{k=1}^{K-1} \operatorname{Pr}\left(Y_i=k\right)=1-\sum_{k=1}^{K-1} \operatorname{Pr}\left(Y_i=K\right) e^{\beta_ k^T \mathbf{x}_i} \\ 
+\Rightarrow \operatorname{Pr}\left(Y_i=K\right)=\frac{1}{1+\sum_{k=1}^{K-1} e^{\beta_k^T \mathbf{x}_i}} .$$`
+We can use this to find the other probabilities generally
+`$$\operatorname{Pr}\left(Y_i=k\right)=\frac{e^{\beta_k^T \mathbf{x}_i}}{1+\sum_{k=1}^{K-1} e^{\beta_k^T \mathbf{x}_i}} ,$$`
+where `\(\beta_K\)` is defined to be zero.
+
+&lt;!-- --- --&gt;
+
+&lt;!-- ## Estimating the coefficients --&gt;
+
+
+---
+class: inverse, center, middle
+
+# Good night!
+
+Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
+
+Theme customized via Garrick Aden-Buie's R package [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer).
+
+Tabbed panels created via Garrick Aden-Buie's R package [**xaringanExtra**](https://github.com/gadenbuie/xaringanExtra/).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](https://yihui.org/knitr/), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

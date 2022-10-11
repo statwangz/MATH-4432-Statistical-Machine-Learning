@@ -1,0 +1,179 @@
+---
+title: "T05: Multiclass Logistic Regression"
+subtitle: "MATH 4432 Statistical Machine Learning"
+author: "WANG Zhiwei"
+institute: "MATH, HKUST"
+date: "2022-10-11"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  results = "asis",
+  echo = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+library(xaringanthemer)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+style_mono_accent(
+  header_font_google = google_font("Josefin Slab", "600"),
+  text_font_google   = google_font("Work Sans", "300", "300i"),
+  code_font_google   = google_font("IBM Plex Mono")
+)
+
+style_mono_light(
+  base_color = "#003366",
+  link_color = "#996600",
+  text_bold_color = "#996600",
+  link_decoration = "underline"
+)
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+```{r echo=FALSE, message=FALSE}
+library(ggplot2)
+```
+
+class: inverse, center, middle
+
+# Let's first recall what we have learned in class!
+
+---
+
+## Logistic regression for classification
+
+- Training set $\mathcal{D}=\left\{\mathbf{x}_i, y_i\right\}_{i=1}^N$, where $y_i \in\{0,1\}$.
+
+--
+
+- Probabilistic model
+$$
+p(y \mid \mathbf{x}, \beta)=\operatorname{Ber}\left(y \mid \sigma\left(\beta^{\top} \mathbf{x}\right)\right)
+$$
+    - $\sigma(z)$ is the sigmoid/logistic/logit function.
+        $$
+        \sigma(z)=\frac{1}{1+\exp (-z)}=\frac{e^z}{e^z+1}
+        $$
+    - It maps $\mathbb{R}$ to $(0,1)$.
+    
+---
+
+## Logit function
+    
+```{r out.width='60%', fig.align='center', echo=FALSE}
+set.seed(20221011)
+library(ggplot2)
+
+x <- runif(1000, -10, 10)
+y <- 1 / (1 + exp(-x))
+ggplot(NULL, aes(x = x, y = y)) +
+  geom_line(color = "red", size = 2) +
+  xlab(NULL) +
+  ylab(NULL) +
+  theme_bw() +
+  theme(
+    text = element_text(size = 24),
+    axis.title = element_text(size = 24),
+    axis.text.y = element_text(size = 24),
+    axis.text.x = element_text(size = 24)
+    )
+```
+
+---
+
+## Joint probability
+
+- Recall that, the likelihood is the joint probability function of joint density function of the data.
+
+- Here, we have independent observations $\left(\mathbf{x}_i, y_i\right), i=1, \ldots, n$, each follows the (conditional) distribution
+$$
+\operatorname{Pr}\left(y_i=1 \mid \mathbf{x}_i\right)=\frac{1}{1+\exp \left(-\beta^T \mathbf{x}_i\right)}=1-\operatorname{Pr}\left(y_i=0 \mid \mathbf{x}_i\right)
+$$
+
+- So, the joint probability function is
+$$\prod_{i=1, \ldots, n ; y_i=1} \operatorname{Pr}\left(y_i=1 \mid \mathbf{x}_i\right) \prod_{i=1, \ldots, n ; y_i=0} \operatorname{Pr}\left(y_i=0 \mid \mathbf{x}_i\right)$$
+which can be conveniently written as
+$$
+\prod_{i=1}^n \frac{\exp \left(y_i \beta^T \mathbf{x}_i\right)}{1+\exp \left(\beta^T \mathbf{x}_i\right)}
+$$
+
+---
+
+## The maximum likelihood estimation
+
+- The likelihood function is the same as the joint probability function, but viewed as a function of $\beta$. The log-likelihood function is
+$$
+\ell=\sum_{i=1}^n\left[y_i \beta^T x_i-\log \left(1+\exp \left(\beta^T \mathbf{x}_i\right)\right)\right]
+$$
+
+- Unlike linear regression, we can no longer write down the MLE in closed form. Instead, we need to use optimization algorithms to compute it.
+    - Gradient descent
+    - Newton’s method
+
+---
+class: inverse, center, middle
+
+# Now let's go to multiclass logistic regression!
+
+---
+
+## A set of independent binary regressions
+
+We now extend the two-class logistic regression approach to the setting of $K > 2$ classes.
+This extension is known as multiclass logistic regression or multinomial logistic regression.
+
+--
+
+To do this, we first select a single class to serve as the **baseline** (why?); without loss of generality, we select the $K$-th class for this role.
+Then
+$$\log \frac{\operatorname{Pr}\left(Y_i=k\right)}{\operatorname{Pr}\left(Y_i=K\right)}=\boldsymbol{\beta}_k^T \mathbf{x}_i ,$$
+for $k=1, \ldots, K-1$.
+**Notice that the log odds between any pair of classes is linear in the features.**
+
+--
+
+We have introduced separate sets of regression coefficients, one for each possible outcome.
+If we exponentiate both sides, and solve for the probabilities, we get
+$$\operatorname{Pr}\left(Y_i=k\right)=\operatorname{Pr}\left(Y_i=K\right) e^{\beta_k^T \mathbf{x}_i} .$$
+---
+
+## Sum $K$ probabilities
+
+Using the fact that all $K$ of the probabilities must sum to one, we find
+$$\operatorname{Pr}\left(Y_i=K\right)=1-\sum_{k=1}^{K-1} \operatorname{Pr}\left(Y_i=k\right)=1-\sum_{k=1}^{K-1} \operatorname{Pr}\left(Y_i=K\right) e^{\beta_ k^T \mathbf{x}_i} \\ 
+\Rightarrow \operatorname{Pr}\left(Y_i=K\right)=\frac{1}{1+\sum_{k=1}^{K-1} e^{\beta_k^T \mathbf{x}_i}} .$$
+We can use this to find the other probabilities generally
+$$\operatorname{Pr}\left(Y_i=k\right)=\frac{e^{\beta_k^T \mathbf{x}_i}}{1+\sum_{k=1}^{K-1} e^{\beta_k^T \mathbf{x}_i}} ,$$
+where $\beta_K$ is defined to be zero.
+
+<!-- --- -->
+
+<!-- ## Estimating the coefficients -->
+
+
+---
+class: inverse, center, middle
+
+# Good night!
+
+Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
+
+Theme customized via Garrick Aden-Buie's R package [**xaringanthemer**](https://github.com/gadenbuie/xaringanthemer).
+
+Tabbed panels created via Garrick Aden-Buie's R package [**xaringanExtra**](https://github.com/gadenbuie/xaringanExtra/).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](https://yihui.org/knitr/), and [R Markdown](https://rmarkdown.rstudio.com).
