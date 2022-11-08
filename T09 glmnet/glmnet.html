@@ -20193,6 +20193,8 @@ class="
 <div class=" highlight hl-r"><pre><span></span><span class="n">train</span> <span class="o">&lt;-</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="m">2</span><span class="p">)</span>
 <span class="n">test</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="o">-</span><span class="n">train</span><span class="p">)</span>
 <span class="n">y.test</span> <span class="o">&lt;-</span> <span class="n">y</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
+
+<span class="n">ridge.mod</span> <span class="o">&lt;-</span> <span class="nf">glmnet</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">grid</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="m">1e-11</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -20262,7 +20264,7 @@ The result will be close to the one obtained by fitting only an intercept term</
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-465.953045008535
+466.904006776563
 </div>
 
 </div>
@@ -20293,8 +20295,7 @@ The result will be close to the one obtained by fitting only an intercept term</
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-r"><pre><span></span><span class="n">ridge.mod</span> <span class="o">&lt;-</span> <span class="nf">glmnet</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">grid</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="m">1e-11</span><span class="p">)</span>
-<span class="n">ridge.pred</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">ridge.mod</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="p">])</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">ridge.pred</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">ridge.mod</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="p">])</span>
 <span class="nf">sqrt</span><span class="p">(</span><span class="nf">mean</span><span class="p">((</span><span class="n">ridge.pred</span> <span class="o">-</span> <span class="n">y.test</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">))</span> <span class="c1"># RMSE</span>
 </pre></div>
 
