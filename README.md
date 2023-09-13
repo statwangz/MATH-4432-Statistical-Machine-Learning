@@ -55,7 +55,7 @@ renderthis::to_pdf(from = "filename.Rmd", complex_slides = TRUE, partial_slides 
 
 ## Acknowledgments
 
-- The tutorial notes are modified and supplemented based on the materials from my "big academic brother" (大师兄), Prof. CAI Mingxuan, CityU (miss him every day 😭).
+- The tutorial notes are modified and supplemented based on the materials from my "elder academic brother" (大师兄), Prof. CAI Mingxuan, CityU (miss him every day 😭).
  
 - Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
 
