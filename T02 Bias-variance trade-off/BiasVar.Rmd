@@ -102,7 +102,7 @@ class: inverse, center, middle
 - Now given $\{x_n\}_{n=1}^N$, we have a set of observations $\mathcal{D}=\{(x_n,y_n)\}_{n=1}^N$ with $$y_n=f(x_n) + \epsilon_n,$$ where $\epsilon_n \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,1)$ is random noise.
 
 ```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
-set.seed(123)
+set.seed(20220913)
 
 # Ground truth
 x <- seq(0, 1, length.out = 100)
@@ -130,7 +130,7 @@ ggplot(data = NULL) +
 For a given $\mathcal{D}$, we can fit a model $\hat{f}(X;\mathcal{D})$, e.g., linear regression.
 
 ```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
-set.seed(123)
+set.seed(20220913)
 
 ggplot(data = NULL) +
   geom_line(aes(x = x, y = y), color = "red", size = 2) +
@@ -227,7 +227,7 @@ We need $\mathbb{E}_{\mathcal{D}}(\hat{f}(X;\mathcal{D}))$, therefore, we need t
 We take the above example with $N = 20$, $L = 500$ and use smoothing spline regression with $\lambda \in [1 \times 10^{-6}, 10]$.
 
 ```{r}
-set.seed(123)
+set.seed(20220913)
 
 trial <- 500 # Number of experiment trials
 N <- 20 # Number of samples for each trial
@@ -237,6 +237,10 @@ biasSQ <- variance <- vector(mode = "numeric", length = length(lambda_list)) # B
 
 X <- runif(N, 0, 1) # Predictor
 y0 <- sin(2 * pi * X) # True values of y
+y_mat = matrix(0, nrow = N, ncol = trial) # Store the generated response variables
+for(j in 1 : trial){
+  y_mat[, j] = y0 + rnorm(N, mean = 0, sd = 1) # Add noise; each column corresponds to one trial
+}
 ```
 
 ]
@@ -249,7 +253,7 @@ for(i in 1 : length(lambda_list)){
   y_hat <- matrix(0, nrow = N, ncol = trial) # Predicted values
   
   for(j in 1 : trial){
-    y <- y0 + rnorm(N, mean = 0, sd = 1) # Add noise
+    y <- y_mat[, j]
     fit_ss <- smooth.spline(x = X, y = y, lambda = lambda_list[i]) # Smoothing spline regression
     model_list_i <- c(model_list_i, list(fit_ss)) # Save the model for the current training dataset
     y_hat[, j] <- predict(fit_ss, X)$y # Predicted values

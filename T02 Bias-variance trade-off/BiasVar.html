@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="WANG Zhiwei" />
     <meta name="date" content="2022-09-13" />
-    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.6/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -95,7 +95,7 @@ class: inverse, center, middle
 .panel[.panel-name[Code]
 
 ```r
-set.seed(123)
+set.seed(20220913)
 
 # Ground truth
 x &lt;- seq(0, 1, length.out = 100)
@@ -135,7 +135,7 @@ For a given `\(\mathcal{D}\)`, we can fit a model `\(\hat{f}(X;\mathcal{D})\)`, 
 .panel[.panel-name[Code]
 
 ```r
-set.seed(123)
+set.seed(20220913)
 
 ggplot(data = NULL) +
   geom_line(aes(x = x, y = y), color = "red", size = 2) +
@@ -156,7 +156,7 @@ ggplot(data = NULL) +
 .panel[.panel-name[Plot]
 
 ```
-#&gt; `geom_smooth()` using formula 'y ~ x'
+#&gt; `geom_smooth()` using formula = 'y ~ x'
 ```
 
 &lt;img src="BiasVar_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
@@ -259,7 +259,7 @@ We take the above example with `\(N = 20\)`, `\(L = 500\)` and use smoothing spl
 
 
 ```r
-set.seed(123)
+set.seed(20220913)
 
 trial &lt;- 500 # Number of experiment trials
 N &lt;- 20 # Number of samples for each trial
@@ -269,6 +269,10 @@ biasSQ &lt;- variance &lt;- vector(mode = "numeric", length = length(lambda_list
 
 X &lt;- runif(N, 0, 1) # Predictor
 y0 &lt;- sin(2 * pi * X) # True values of y
+y_mat = matrix(0, nrow = N, ncol = trial) # Store the generated response variables
+for(j in 1 : trial){
+  y_mat[, j] = y0 + rnorm(N, mean = 0, sd = 1) # Add noise; each column corresponds to one trial
+}
 ```
 
 ]
@@ -282,7 +286,7 @@ for(i in 1 : length(lambda_list)){
   y_hat &lt;- matrix(0, nrow = N, ncol = trial) # Predicted values
   
   for(j in 1 : trial){
-    y &lt;- y0 + rnorm(N, mean = 0, sd = 1) # Add noise
+    y &lt;- y_mat[, j]
     fit_ss &lt;- smooth.spline(x = X, y = y, lambda = lambda_list[i]) # Smoothing spline regression
     model_list_i &lt;- c(model_list_i, list(fit_ss)) # Save the model for the current training dataset
     y_hat[, j] &lt;- predict(fit_ss, X)$y # Predicted values
