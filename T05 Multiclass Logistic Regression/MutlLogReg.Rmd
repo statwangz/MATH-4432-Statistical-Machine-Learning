@@ -44,7 +44,7 @@ style_mono_light(
 xaringanExtra::use_panelset()
 ```
 
-```{r echo=FALSE, message=FALSE}
+```{r echo = FALSE, message = FALSE}
 library(ggplot2)
 ```
 
@@ -74,14 +74,14 @@ $$
 
 ## Logit function
     
-```{r out.width='60%', fig.align='center', echo=FALSE}
+```{r out.width = "60%", fig.align = "center", echo = FALSE}
 set.seed(20221011)
 library(ggplot2)
 
 x <- runif(1000, -10, 10)
 y <- 1 / (1 + exp(-x))
 ggplot(NULL, aes(x = x, y = y)) +
-  geom_line(color = "red", size = 2) +
+  geom_line(color = "red", linewidth = 2) +
   xlab(NULL) +
   ylab(NULL) +
   theme_bw() +

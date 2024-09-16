@@ -80,7 +80,7 @@ $$
 
   High variance $\longrightarrow$ **overfitting**.
 
-```{r out.width='95%', fig.align='center', echo=FALSE}
+```{r out.width = "95%", fig.align = "center", echo = FALSE}
 knitr::include_graphics("bias_variance.png")
 ```
 
@@ -101,7 +101,9 @@ class: inverse, center, middle
 
 - Now given $\{x_n\}_{n=1}^N$, we have a set of observations $\mathcal{D}=\{(x_n,y_n)\}_{n=1}^N$ with $$y_n=f(x_n) + \epsilon_n,$$ where $\epsilon_n \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,1)$ is random noise.
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align = "center", out.width = "50%"}
 set.seed(20220913)
 
 # Ground truth
@@ -123,13 +125,13 @@ ggplot(data = NULL) +
     )
 ```
 
-]
-
 .panel[.panel-name[Fit the model]
 
 For a given $\mathcal{D}$, we can fit a model $\hat{f}(X;\mathcal{D})$, e.g., linear regression.
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align= "center", out.width = "50%"}
 set.seed(20220913)
 
 ggplot(data = NULL) +
@@ -143,8 +145,6 @@ ggplot(data = NULL) +
     axis.text.x = element_text(size = 18)
     )
 ```
-
-]
 
 ]
 
@@ -176,7 +176,9 @@ Note that $f^{(m)}(\cdot)$ denotes the $m$-th derivative of $f(\cdot)$, and $\ma
 
 - As $\lambda$ increases from 0 to $\infty$, the function estimate $f_\lambda$ is forced to be smoother with respect to the penalty functional $J_m(\cdot)$. The goal is to find the $\lambda$ that produces the "correct" degree of smoothness for the function estimate.
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%",message=FALSE}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align = "center", out.width = "50%", message = FALSE}
 library(ggformula)
 
 ggplot(data = NULL, aes(x = X, y = y_obs)) +
@@ -193,8 +195,6 @@ ggplot(data = NULL, aes(x = X, y = y_obs)) +
     axis.text.x = element_text(size = 18)
     )
 ```
-
-]
 
 ]
 
@@ -280,7 +280,9 @@ for(i in 1 : length(lambda_list)){
 
 Let's first take a look at how the two sources of error change as the parameter $\lambda$ changes.
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%",message=FALSE}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align = "center", out.width = "50%", message = FALSE}
 ggplot(data = NULL) +
   geom_line(aes(x = log(lambda_list), y = biasSQ, color = "biasSQ"), size = 2) +
   geom_line(aes(x = log(lambda_list), y = variance, color = "variance"), size = 2) +
@@ -303,8 +305,6 @@ ggplot(data = NULL) +
 
 ]
 
-]
-
 ---
 
 ## More details
@@ -315,7 +315,9 @@ ggplot(data = NULL) +
 
 Then we chose three different values for the parameter $\lambda$ (too small, suitable, too large) and visualize for more performance details.
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%",message=FALSE}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align = "center", out.width = "50%", message = FALSE}
 par(mfrow = c(3, 2))
 
 N <- 100
@@ -336,7 +338,6 @@ for(lambda_idx in lambda_idx_list){
   lines(x, rowMeans(y_hat), col = "red", ylim = c(-3, 3))
   }
 ```
-]
 
 ]
 

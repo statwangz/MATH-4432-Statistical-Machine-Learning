@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="author" content="WANG Zhiwei" />
     <meta name="date" content="2022-09-27" />
-    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
-    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -59,9 +59,11 @@ Recall the least squares (LS) problem for linear regression
 
 - Now given `\(\{x_i\}_{i=1}^N\)`, we have a set of observations `\(\mathcal{D}=\{(x_i,y_i)\}_{i=1}^N\)` with `$$y_i=f(x_i) + \epsilon_i,$$` where `\(\epsilon_i \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,0.1^2)\)` is random noise.
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(123)
 N &lt;- 10 # Sample size
 x &lt;- runif(N, 0, 1)
@@ -69,7 +71,7 @@ y0 &lt;- x # Ground truth
 y_obs &lt;- y0 + rnorm(N, mean = 0, sd = 0.1) # Add noise, observed data
 ggplot(data = NULL, aes(x = x, y = y_obs)) +
   geom_point(aes(x = x, y = y_obs), size = 5) +
-  geom_smooth(method = "lm", size = 2) +
+  geom_smooth(method = "lm", linewidth = 2) +
   ylab("y") +
   theme(
     text = element_text(size = 20),
@@ -85,8 +87,6 @@ ggplot(data = NULL, aes(x = x, y = y_obs)) +
 .panel[.panel-name[Minimize the squared loss]
 
 &lt;img src="l1_files/figure-html/unnamed-chunk-2-1.png" width="40%" style="display: block; margin: auto;" /&gt;
-
-]
 
 ]
 
@@ -112,9 +112,11 @@ class: inverse, center, middle
 of which the noise is extremely large.
 This situation is rare, but the probability is not zero!
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 x_ol &lt;- c(x, 0.9)
 y0_ol &lt;- c(y0, 0.9)
 y_obs_ol &lt;- c(y_obs, -2)
@@ -122,8 +124,8 @@ y_obs_ol &lt;- c(y_obs, -2)
 ggplot(data = NULL) +
   geom_point(aes(x = x, y = y_obs), size = 5) +
   geom_point(aes(x = 0.9, y = -2), color = "red", size = 5) +
-  geom_smooth(aes(x = x, y = y_obs), method = "lm", color = "blue", size = 2) +
-  geom_smooth(aes(x = x_ol, y = y_obs_ol), method = "lm", color = "red", size = 2) +
+  geom_smooth(aes(x = x, y = y_obs), method = "lm", color = "blue", linewidth = 2) +
+  geom_smooth(aes(x = x_ol, y = y_obs_ol), method = "lm", color = "red", linewidth = 2) +
   ylab("y") +
   theme(
     text = element_text(size = 20),
@@ -139,8 +141,6 @@ ggplot(data = NULL) +
 .panel[.panel-name[Minimize the squared loss]
 
 &lt;img src="l1_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-]
 
 ]
 
@@ -327,7 +327,8 @@ where `\(w_i^k = \sqrt{\frac{1}{2\left|\left[ X \beta^ { k } - y \right]_i \righ
 
 .panel[.panel-name[Initialization]
 
-```r
+
+``` r
 df &lt;- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
 
 #beta_0 &lt;- rnorm(1) # Initialize intercept
@@ -338,9 +339,10 @@ beta_1 &lt;- 1 # To demonstrate, we fit beta_1 = 1
 
 ]
 
-.panel[.panel-name[lm()]
+.panel[.panel-name[`lm()`]
 
-```r
+
+``` r
 opar &lt;- par()
 par(mfrow = c(2, 2))
 
@@ -361,18 +363,19 @@ for (k in 0:3) { # Here we only repeat 4 times
 
 ]
 
-.panel[.panel-name[geom_smooth()]
+.panel[.panel-name[`geom_smooth()`]
 
-```r
+
+``` r
 p_list &lt;- list() # Figure list
 for (k in c(1:4)) { # Here we only repeat 4 times
   df$weight &lt;- sqrt(1 / 2 / abs(beta_0 + x_ol * beta_1 - y_obs_ol))
   fit_l1 &lt;- lm(y ~ x, data = df, weights = weight) # Reweighted LS for l1 norm minimization
   beta_0 &lt;- coef(fit_l1)[1] # Update intercept
   beta_1 &lt;- coef(fit_l1)[2] # Update slope
-  p &lt;- ggplot(df, aes(x = x, y = y, size = weight / 3)) +
-    geom_point(shape = 16) +
-    geom_smooth(method = "lm", aes(weight = weight), size = 1.5, show.legend = FALSE) +
+  p &lt;- ggplot(df, aes(x = x, y = y)) +
+    geom_point(shape = 16, aes(size = weight / 3)) +
+    geom_smooth(method = "lm", aes(weight = weight), linewidth = 1.5, show.legend = FALSE) +
     theme(
       text = element_text(size = 18),
       legend.title = element_text(size = 12),
@@ -385,7 +388,8 @@ for (k in c(1:4)) { # Here we only repeat 4 times
 
 ]
 
-.panel[.panel-name[ggplot]
+.panel[.panel-name[`ggplot`]
+
 &lt;img src="l1_files/figure-html/unnamed-chunk-13-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -400,7 +404,8 @@ for (k in c(1:4)) { # Here we only repeat 4 times
 
 .panel[.panel-name[Initialization and parameter setting]
 
-```r
+
+``` r
 df &lt;- data.frame(y = y_obs_ol, x = x_ol, weight = rep(0, length(x_ol))) # Data
 
 #beta_0 &lt;- rnorm(1) # Initialize intercept
@@ -416,7 +421,7 @@ iter_max &lt;- 5000 # Maximum number of iterations
 
 .panel[.panel-name[l1 norm minimization]
 
-```r
+``` r
 l1_loss &lt;- sum(abs(beta_0 + x_ol * beta_1 - y_obs_ol)) # l1 loss at initial point
 for (k in 1:iter_max) {
   df$weight &lt;- sqrt(1 / 2 / abs(beta_0 + x_ol * beta_1 - y_obs_ol))
@@ -476,7 +481,8 @@ The subgradient of `\(l_1\)`-norm can be taken as
 
 .panel[.panel-name[Initialization and parameter setting]
 
-```r
+
+``` r
 #beta_0 &lt;- rnorm(1) # Initialize intercept
 #beta_1 &lt;- rnorm(1) # Initialize slope
 beta_0 &lt;- -3 # To demonstrate, we fit beta_0 = -3
@@ -490,11 +496,13 @@ step_size &lt;- 0.05 # Try different step size, e.g., 0.1 and 0.01, and see what
 tol &lt;- 1e-3 # Convergence tolerance / criterion
 iter_max &lt;- 5000 # Maximum number of iterations
 ```
+
 ]
 
 .panel[.panel-name[Implementation]
 
-```r
+
+``` r
 for (k in 1:iter_max) {
   r &lt;- as.vector(y_obs_ol - X %*% as.matrix(c(beta))) # Residual
   subgrad &lt;- colSums(X * sign(r)) # Subgradient
@@ -514,6 +522,7 @@ for (k in 1:iter_max) {
 ]
 
 .panel[.panel-name[Visualization]
+
 &lt;img src="l1_files/figure-html/unnamed-chunk-19-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ]

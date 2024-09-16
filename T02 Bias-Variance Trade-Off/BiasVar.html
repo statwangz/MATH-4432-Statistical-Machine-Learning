@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="author" content="WANG Zhiwei" />
     <meta name="date" content="2022-09-13" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
-    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -40,10 +40,6 @@ class: center, middle, inverse, title-slide
 
 
 
-```
-#&gt; Want to understand how all the pieces fit together?
-#&gt; Read R for Data Science: https://r4ds.had.co.nz/
-```
 
 class: inverse, center, middle
 
@@ -96,9 +92,11 @@ class: inverse, center, middle
 
 - Now given `\(\{x_n\}_{n=1}^N\)`, we have a set of observations `\(\mathcal{D}=\{(x_n,y_n)\}_{n=1}^N\)` with `$$y_n=f(x_n) + \epsilon_n,$$` where `\(\epsilon_n \stackrel{\text { i.i.d. }}{\sim} \mathcal{N}(0,1)\)` is random noise.
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(20220913)
 
 # Ground truth
@@ -130,15 +128,15 @@ ggplot(data = NULL) +
 
 ]
 
-]
-
 .panel[.panel-name[Fit the model]
 
 For a given `\(\mathcal{D}\)`, we can fit a model `\(\hat{f}(X;\mathcal{D})\)`, e.g., linear regression.
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(20220913)
 
 ggplot(data = NULL) +
@@ -164,8 +162,6 @@ ggplot(data = NULL) +
 ```
 
 &lt;img src="BiasVar_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-]
 
 ]
 
@@ -199,9 +195,11 @@ Note that `\(f^{(m)}(\cdot)\)` denotes the `\(m\)`-th derivative of `\(f(\cdot)\
 
 - As `\(\lambda\)` increases from 0 to `\(\infty\)`, the function estimate `\(f_\lambda\)` is forced to be smoother with respect to the penalty functional `\(J_m(\cdot)\)`. The goal is to find the `\(\lambda\)` that produces the "correct" degree of smoothness for the function estimate.
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 library(ggformula)
 
 ggplot(data = NULL, aes(x = X, y = y_obs)) +
@@ -226,8 +224,6 @@ ggplot(data = NULL, aes(x = X, y = y_obs)) +
 .panel[.panel-name[Plot]
 
 &lt;img src="BiasVar_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-]
 
 ]
 
@@ -262,7 +258,7 @@ We need `\(\mathbb{E}_{\mathcal{D}}(\hat{f}(X;\mathcal{D}))\)`, therefore, we ne
 We take the above example with `\(N = 20\)`, `\(L = 500\)` and use smoothing spline regression with `\(\lambda \in [1 \times 10^{-6}, 10]\)`.
 
 
-```r
+``` r
 set.seed(20220913)
 
 trial &lt;- 500 # Number of experiment trials
@@ -284,7 +280,7 @@ for(j in 1 : trial){
 .panel[.panel-name[Implementation]
 
 
-```r
+``` r
 for(i in 1 : length(lambda_list)){
   model_list_i &lt;- list()
   y_hat &lt;- matrix(0, nrow = N, ncol = trial) # Predicted values
@@ -317,9 +313,11 @@ for(i in 1 : length(lambda_list)){
 
 Let's first take a look at how the two sources of error change as the parameter `\(\lambda\)` changes.
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(data = NULL) +
   geom_line(aes(x = log(lambda_list), y = biasSQ, color = "biasSQ"), size = 2) +
   geom_line(aes(x = log(lambda_list), y = variance, color = "variance"), size = 2) +
@@ -352,8 +350,6 @@ ggplot(data = NULL) +
 
 ]
 
-]
-
 ---
 
 ## More details
@@ -364,9 +360,11 @@ ggplot(data = NULL) +
 
 Then we chose three different values for the parameter `\(\lambda\)` (too small, suitable, too large) and visualize for more performance details.
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 par(mfrow = c(3, 2))
 
 N &lt;- 100
@@ -396,7 +394,6 @@ for(lambda_idx in lambda_idx_list){
 
 &lt;img src="BiasVar_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-]
 ]
 
 ]

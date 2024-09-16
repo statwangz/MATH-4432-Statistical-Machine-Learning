@@ -5,18 +5,19 @@
     <meta charset="utf-8" />
     <meta name="author" content="WANG Zhiwei" />
     <meta name="date" content="2022-09-06" />
-    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
-    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset-0.2.6/panelset.js"></script>
-    <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <script src="libs/header-attrs-2.28/header-attrs.js"></script>
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
+    <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
     <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
     <script src="libs/leaflet-1.3.1/leaflet.js"></script>
     <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
     <script src="libs/proj4-2.6.2/proj4.min.js"></script>
     <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
     <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-    <script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+    <script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -141,13 +142,13 @@ It includes a console, syntax-highlighting editor that supports direct code exec
 --
 
 
-```r
+``` r
 print("Hello MATH 4432!")
 ```
 
 [1] "Hello MATH 4432!"
 
-```r
+``` r
 print("Hello R!")
 ```
 
@@ -258,25 +259,25 @@ All data is represented in binary format, by bits (TRUE/FALSE, YES/NO, 1/0)
 Direct binary values: `TRUE` or `FALSE` in R
 
 
-```r
+``` r
 TRUE
 ```
 
 [1] TRUE
 
-```r
+``` r
 FALSE
 ```
 
 [1] FALSE
 
-```r
+``` r
 T
 ```
 
 [1] TRUE
 
-```r
+``` r
 F
 ```
 
@@ -290,19 +291,19 @@ F
 The number zero (`0`), a positive natural number (`1, 2, 3, etc.`) or a negative integer with a minus sign (`−1, −2, −3, etc.`), represented by a fixed-length block of bits
 
 
-```r
+``` r
 0L
 ```
 
 [1] 0
 
-```r
+``` r
 1L
 ```
 
 [1] 1
 
-```r
+``` r
 as.integer(-100)
 ```
 
@@ -317,19 +318,19 @@ as.integer(-100)
 Positive or negative whole number with a decimal point
 
 
-```r
+``` r
 1
 ```
 
 [1] 1
 
-```r
+``` r
 1.23
 ```
 
 [1] 1.23
 
-```r
+``` r
 5e-8
 ```
 
@@ -346,19 +347,19 @@ Fixed-length blocks of bits, with special coding
 **Strings** = sequences of characters
 
 
-```r
+``` r
 "Hello MATH 4432!"
 ```
 
 [1] "Hello MATH 4432!"
 
-```r
+``` r
 "Hello R!"
 ```
 
 [1] "Hello R!"
 
-```r
+``` r
 'HKUST'
 ```
 
@@ -372,25 +373,25 @@ Fixed-length blocks of bits, with special coding
 **Missing** or **ill-defined values** and others
 
 
-```r
+``` r
 NA
 ```
 
 [1] NA
 
-```r
+``` r
 NaN
 ```
 
 [1] NaN
 
-```r
+``` r
 0 / 0
 ```
 
 [1] NaN
 
-```r
+``` r
 1 / 0
 ```
 
@@ -416,25 +417,25 @@ class: inverse, center, middle
 Returns the type of the input
 
 
-```r
+``` r
 typeof(TRUE)
 ```
 
 [1] "logical"
 
-```r
+``` r
 typeof(3L)
 ```
 
 [1] "integer"
 
-```r
+``` r
 typeof(3)
 ```
 
 [1] "double"
 
-```r
+``` r
 typeof("HKUST")
 ```
 
@@ -446,26 +447,26 @@ typeof("HKUST")
 Return Booleans for whether the argument is of type `foo`
 
 
-```r
+``` r
 is.character(3)
 ```
 
 [1] FALSE
 
-```r
+``` r
 is.character("3")
 ```
 
 [1] TRUE
 
 
-```r
+``` r
 is.nan(0 / 0)
 ```
 
 [1] TRUE
 
-```r
+``` r
 is.na(3 / 0)
 ```
 
@@ -481,19 +482,19 @@ foobar (/ˈfuːbɑːr/)
 Tries to “cast” its argument to type `foo` — to translate it sensibly into a `foo`-type value
 
 
-```r
+``` r
 as.character(1 / 3)
 ```
 
 [1] "0.333333333333333"
 
-```r
+``` r
 as.numeric(as.character(1 / 3))
 ```
 
 [1] 0.3333333
 
-```r
+``` r
 3 * as.numeric(as.character(1 / 3))
 ```
 
@@ -526,34 +527,34 @@ class: inverse, center, middle
 
 .pull-right[
 
-```r
+``` r
 5 + 3
 ```
 
 [1] 8
 
-```r
+``` r
 
 5 - 3
 ```
 
 [1] 2
 
-```r
+``` r
 
 5 * 3
 ```
 
 [1] 15
 
-```r
+``` r
 
 5 / 3
 ```
 
 [1] 1.666667
 
-```r
+``` r
 
 5 ^ 3
 ```
@@ -583,31 +584,31 @@ Take two objects, like numbers, and give a Boolean
 
 .pull-right[
 
-```r
+``` r
 5 &gt; 3
 ```
 
 [1] TRUE
 
-```r
+``` r
 5 &lt; 3
 ```
 
 [1] FALSE
 
-```r
+``` r
 5 &gt;= 5
 ```
 
 [1] TRUE
 
-```r
+``` r
 5 == 3
 ```
 
 [1] FALSE
 
-```r
+``` r
 5 != 3
 ```
 
@@ -626,7 +627,7 @@ Equals sign =
 
 .pull-left[
 
-```r
+``` r
 0.3 - 0.7 + 0.4 == 0
 ```
 
@@ -635,7 +636,7 @@ Equals sign =
 
 .pull-right[
 
-```r
+``` r
 sqrt(2)^2 == 2
 ```
 
@@ -650,7 +651,7 @@ sqrt(2)^2 == 2
 
 .pull-left[
 
-```r
+``` r
 0.3 - 0.7 + 0.4
 ```
 
@@ -659,7 +660,7 @@ sqrt(2)^2 == 2
 
 .pull-right[
 
-```r
+``` r
 sqrt(2)^2 - 2
 ```
 
@@ -672,7 +673,7 @@ sqrt(2)^2 - 2
 
 .pull-left[
 
-```r
+``` r
 all.equal(0.3 - 0.7 + 0.4, 0)
 ```
 
@@ -681,7 +682,7 @@ all.equal(0.3 - 0.7 + 0.4, 0)
 
 .pull-right[
 
-```r
+``` r
 all.equal(sqrt(2)^2, 2)
 ```
 
@@ -700,7 +701,7 @@ Who can give me a shot?
 
 .pull-left[
 
-```r
+``` r
 ! TRUE
 ```
 
@@ -709,7 +710,7 @@ Who can give me a shot?
 
 .pull-right[
 
-```r
+``` r
 ! F
 ```
 
@@ -722,13 +723,13 @@ Who can give me a shot?
 `&amp;` **AND** (**conjunction**), **binary**
 
 
-```r
+``` r
 TRUE &amp; TRUE
 ```
 
 [1] TRUE
 
-```r
+``` r
 TRUE &amp; FALSE
 ```
 
@@ -741,13 +742,13 @@ TRUE &amp; FALSE
 `|` **OR** (**disjunction**), **binary**
 
 
-```r
+``` r
 FALSE | TRUE
 ```
 
 [1] TRUE
 
-```r
+``` r
 FALSE | FALSE
 ```
 
@@ -766,7 +767,7 @@ Vertical bar |
 
 - `TRUE` **AND** `TRUE`
 
-```r
+``` r
 (3 &lt; 5) &amp; (3 * 5 == 15)
 ```
 
@@ -776,7 +777,7 @@ Vertical bar |
 
 - `FALSE` **AND** `TRUE`
 
-```r
+``` r
 (3 &gt; 5) &amp; (3 * 5 == 15)
 ```
 
@@ -786,7 +787,7 @@ Vertical bar |
 
 - `FALSE` **OR** `TRUE`
 
-```r
+``` r
 (3 &gt; 5) | (3 * 5 == 15)
 ```
 
@@ -808,25 +809,25 @@ We can give names to data objects; these give us **variables**
 Some built-in variables
 
 
-```r
+``` r
 pi
 ```
 
 [1] 3.141593
 
-```r
+``` r
 cos(pi)
 ```
 
 [1] -1
 
 
-```r
+``` r
 letters
 ```
 
- [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p"
-[17] "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+[20] "t" "u" "v" "w" "x" "y" "z"
 
 ---
 
@@ -835,21 +836,21 @@ letters
 Most variables are created with the **assignment operator**, `&lt;-` or `=`
 
 
-```r
+``` r
 a &lt;- 1L
 a
 ```
 
 [1] 1
 
-```r
+``` r
 is.integer(a)
 ```
 
 [1] TRUE
 
 
-```r
+``` r
 b = 5
 a * b
 ```
@@ -879,7 +880,7 @@ A **vector** is a sequence of values, all of the **same type**, including `logic
 `c()` function returns a vector containing all its arguments **in order**
 
 
-```r
+``` r
 students &lt;- c("Jerry", "Tara", "Tom")
 id &lt;- c(1:3)
 midterm &lt;- c(80, 96, 75)
@@ -890,13 +891,13 @@ midterm &lt;- c(80, 96, 75)
 Type the variable name to display its value
 
 
-```r
+``` r
 students
 ```
 
 [1] "Jerry" "Tara"  "Tom"  
 
-```r
+``` r
 id
 ```
 
@@ -913,27 +914,27 @@ colon [ˈkoʊlɑn] :
 The function `c()` (for combine) can also be used to add elements to a vector
 
 
-```r
+``` r
 students
 ```
 
 [1] "Jerry" "Tara"  "Tom"  
 
 
-```r
+``` r
 students &lt;- c(students, "Zhiwei")
 id &lt;- c(id, 4)
 midterm &lt;- c(midterm, 59)
 ```
 
 
-```r
+``` r
 students
 ```
 
 [1] "Jerry"  "Tara"   "Tom"    "Zhiwei"
 
-```r
+``` r
 midterm
 ```
 
@@ -946,19 +947,19 @@ midterm
 - `vec[1]` is the 1st element, `vec[3]` is the 3rd
 
 
-```r
+``` r
 students[1]
 ```
 
 [1] "Jerry"
 
-```r
+``` r
 students[3]
 ```
 
 [1] "Tom"
 
-```r
+``` r
 students[c(2, 4)]
 ```
 
@@ -969,7 +970,7 @@ students[c(2, 4)]
 - `vec[-3]` is a vector containing all but the 3rd element
 
 
-```r
+``` r
 students[-3]
 ```
 
@@ -982,34 +983,34 @@ students[-3]
 You can give **names** to elements or components of vectors
 
 
-```r
+``` r
 students
 ```
 
 [1] "Jerry"  "Tara"   "Tom"    "Zhiwei"
 
-```r
+``` r
 names(midterm) &lt;- students # Assign students' names to the score
 ```
 
 --
 
 
-```r
+``` r
 midterm
 ```
 
  Jerry   Tara    Tom Zhiwei 
     80     96     75     59 
 
-```r
+``` r
 midterm["Zhiwei"] # Get score for Zhiwei
 ```
 
 Zhiwei 
     59 
 
-```r
+``` r
 midterm[c("Tara", "Zhiwei")] # Get scores for 2 students
 ```
 
@@ -1025,7 +1026,7 @@ Operators apply to vectors **pairwise** or **elementwise**
 --
 
 
-```r
+``` r
 final &lt;- c(84, 90, 78, 61) # Final exam scores
 final
 ```
@@ -1035,7 +1036,7 @@ final
 --
 
 
-```r
+``` r
 midterm # Midterm exam scores
 ```
 
@@ -1045,7 +1046,7 @@ midterm # Midterm exam scores
 --
 
 
-```r
+``` r
 average &lt;- (midterm + final) / 2 # Average exam score
 average
 ```
@@ -1056,7 +1057,7 @@ average
 --
 
 
-```r
+``` r
 bonus &lt;- 5
 average + bonus
 ```
@@ -1071,20 +1072,20 @@ average + bonus
 Is the final score higher than the midterm score?
 
 
-```r
+``` r
 midterm
 ```
 
  Jerry   Tara    Tom Zhiwei 
     80     96     75     59 
 
-```r
+``` r
 final
 ```
 
 [1] 84 90 78 61
 
-```r
+``` r
 final &gt; midterm
 ```
 
@@ -1096,7 +1097,7 @@ final &gt; midterm
 Boolean operators can be applied pairwise
 
 
-```r
+``` r
 (final &gt; midterm) &amp; (midterm &lt; 80)
 ```
 
@@ -1108,7 +1109,7 @@ Boolean operators can be applied pairwise
 ## Functions on vectors
 
 
-```r
+``` r
 sum(vec)     # sum of vec
 mean(vec)	   # mean of vec
 median(vec)	 # median of vec
@@ -1130,7 +1131,7 @@ summary(vec) # gives a five-number summary
 As with atomic vectors, the elements of a matrix must be of the **same data type**
 
 
-```r
+``` r
 mat_1 &lt;- matrix(c(1:6), nrow = 3, ncol = 2)
 mat_1
 ```
@@ -1144,7 +1145,7 @@ mat_1
 
 Dimension of the matrix
 
-```r
+``` r
 dim(mat_1)
 ```
 
@@ -1155,7 +1156,7 @@ dim(mat_1)
 Elements of a matrix can be referenced by specifying the index
 
 
-```r
+``` r
 mat_1[2, 1]
 ```
 
@@ -1166,7 +1167,7 @@ mat_1[2, 1]
 ## Matrix operations
 
 
-```r
+``` r
 mat_2 &lt;- matrix(c(1:6), nrow = 3, ncol = 2)
 mat_2
 ```
@@ -1177,7 +1178,7 @@ mat_2
 [3,]    3    6
 
 
-```r
+``` r
 mat_1 + mat_2 # Addition
 ```
 
@@ -1187,7 +1188,7 @@ mat_1 + mat_2 # Addition
 [3,]    6   12
 
 
-```r
+``` r
 mat_1 - mat_2 # Substraction
 ```
 
@@ -1202,7 +1203,7 @@ mat_1 - mat_2 # Substraction
 
 **Elementwise** multiplication
 
-```r
+``` r
 mat_1 * mat_2
 ```
 
@@ -1215,7 +1216,7 @@ mat_1 * mat_2
 
 Multiplication
 
-```r
+``` r
 mat_3 &lt;- matrix(c(5:10), nrow = 2, ncol = 3)
 mat_4 &lt;- mat_1 %*% mat_3
 mat_4
@@ -1232,7 +1233,7 @@ mat_4
 
 Transpose
 
-```r
+``` r
 t(mat_4)
 ```
 
@@ -1245,13 +1246,13 @@ t(mat_4)
 
 `diag()` function returns a vector containing the elements of the principal diagonal
 
-```r
+``` r
 diag(mat_4)
 ```
 
 [1] 29 54 87
 
-```r
+``` r
 diag(t(mat_4))
 ```
 
@@ -1266,7 +1267,7 @@ diag(t(mat_4))
 Creating `data.frame` by hand
 
 
-```r
+``` r
 grade &lt;- data.frame(id = id,
                     midterm = midterm,
                     final = final,
@@ -1285,7 +1286,7 @@ Zhiwei  4      59    61    60.0
 
 Elements of `data.frame` can also be referenced by specifying the row and the column index
 
-```r
+``` r
 grade[2, 3]
 ```
 
@@ -1297,25 +1298,25 @@ grade[2, 3]
 
 Refer to columns
 
-```r
+``` r
 grade[, 4]
 ```
 
 [1] 82.0 93.0 76.5 60.0
 
-```r
+``` r
 grade[, "average"]
 ```
 
 [1] 82.0 93.0 76.5 60.0
 
-```r
+``` r
 grade[["average"]]
 ```
 
 [1] 82.0 93.0 76.5 60.0
 
-```r
+``` r
 grade$average
 ```
 
@@ -1327,7 +1328,7 @@ grade$average
 
 Add a new row
 
-```r
+``` r
 # new row
 Can &lt;- data.frame(id = 5, 
                   midterm = 99, 
@@ -1352,7 +1353,7 @@ Can     5      99    99    99.0
 
 Add a new column
 
-```r
+``` r
 grade &lt;- cbind(grade,
                gender = c("male", "female", "male", "male", "male"))
 grade
@@ -1369,7 +1370,7 @@ Can     5      99    99    99.0   male
 
 Transfer `gender` to `factor` mode
 
-```r
+``` r
 grade[, "gender"] &lt;- factor(grade[, "gender"], levels = c("female", "male"))
 grade
 ```
@@ -1388,14 +1389,14 @@ Can     5      99    99    99.0   male
 Actually we usually `data.frame` by `read.csv()` and `read.table()`, i.e. when importing the data into R
 
 
-```r
+``` r
 df &lt;- read.csv("&lt;filename&gt;")
 df &lt;- read.table("&lt;filename&gt;")
 ```
 
 When meeting big data, `fread()` function from `data.table` package will be helpful!
 
-```r
+``` r
 dt &lt;- fread("&lt;filename&gt;")
 ```
 
@@ -1413,7 +1414,7 @@ Many useful R functions come in packages, free libraries of code written by R's 
 To install an R package, open an R session and type at the command line
 
 
-```r
+``` r
 install.packages("&lt;package name&gt;")
 ```
 
@@ -1424,7 +1425,7 @@ R will download the package from [CRAN](https://cran.r-project.org/)
 Once you have a package installed, you can make its contents available to use in your current R session by running
 
 
-```r
+``` r
 library(&lt;package name&gt;)
 ```
 
@@ -1444,9 +1445,11 @@ library(&lt;package name&gt;)
 
 We first use `plot()` function in Base-R
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(123)
 
 # Generate data
@@ -1468,15 +1471,16 @@ abline(lm(y_obs ~ x))
 &lt;img src="Introduction_files/figure-html/unnamed-chunk-69-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ]
-]
 
 .panel[.panel-name[`ggplot2`]
 
 **`ggplot2`** a famous package for making beautiful graphics
 
+]
+
 .panel[.panel-name[Code]
 
-```r
+``` r
 # install.packages("ggplot2")
 library(ggplot2)
 ggplot(data = NULL, aes(x = x, y = y_obs)) +
@@ -1499,12 +1503,10 @@ ggplot(data = NULL, aes(x = x, y = y_obs)) +
 .panel[.panel-name[Plot]
 
 ```
-#&gt; `geom_smooth()` using formula 'y ~ x'
+#&gt; `geom_smooth()` using formula = 'y ~ x'
 ```
 
 &lt;img src="Introduction_files/figure-html/unnamed-chunk-70-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-]
 
 ]
 
@@ -1519,7 +1521,7 @@ ggplot(data = NULL, aes(x = x, y = y_obs)) +
 This R package makes it easy to integrate and control Leaflet maps in R.
 
 
-```r
+``` r
 # install.packages("leaflet")
 library(leaflet)
 leaflet() %&gt;% 
@@ -1529,8 +1531,8 @@ leaflet() %&gt;%
           zoom = 14)
 ```
 
-<div id="htmlwidget-23e11579ab285b5c7c2a" style="width:100%;height:144px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-23e11579ab285b5c7c2a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[22.3363948344088,114.26546147609],14,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-6e16c2883c26dd1edd48" style="width:100%;height:144px;"></div>
+<script type="application/json" data-for="htmlwidget-6e16c2883c26dd1edd48">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[22.33639483440875,114.2654614760902],14,[]]},"evals":[],"jsHooks":[]}</script>
 
 ---
 class: inverse, center, middle

@@ -992,7 +992,9 @@ library(<package name>)
 
 We first use `plot()` function in Base-R
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align = "center", out.width = "50%"}
 set.seed(123)
 
 # Generate data
@@ -1004,13 +1006,14 @@ y_obs <- y + rnorm(100) # Add noise
 plot(x = x, y = y_obs)
 abline(lm(y_obs ~ x))
 ```
-]
 
 .panel[.panel-name[`ggplot2`]
 
 **`ggplot2`** a famous package for making beautiful graphics
 
-```{r panelset = c(source = "Code", output = "Plot"),fig.align='center',out.width="50%"}
+]
+
+```{r panelset = c(source = "Code", output = "Plot"), fig.align = "center", out.width = "50%"}
 # install.packages("ggplot2")
 library(ggplot2)
 ggplot(data = NULL, aes(x = x, y = y_obs)) +
@@ -1028,8 +1031,6 @@ ggplot(data = NULL, aes(x = x, y = y_obs)) +
 
 ]
 
-]
-
 ---
 
 ## `leaflet`
@@ -1038,7 +1039,7 @@ ggplot(data = NULL, aes(x = x, y = y_obs)) +
 
 This R package makes it easy to integrate and control Leaflet maps in R.
 
-```{r out.width='100%', fig.height=2, eval=require('leaflet')}
+```{r out.width = "100%", fig.height = 2, eval = require("leaflet")}
 # install.packages("leaflet")
 library(leaflet)
 leaflet() %>% 
