@@ -20,20 +20,20 @@
  </a>
 </p>
 
-## Course information
+## Course Information
 
 [MATH 4432 Statistical Machine Learning](https://sites.google.com/site/eeyangc/teaching/math-4432-statistical-machine-learning)
  
-Instructor: Prof. YANG Can
+Instructor: Prof. Can Yang
 
-Teaching assistant: WANG Zhiwei (<zhiwei.wang@connect.ust.hk>)
+Teaching Assistant: Zhiwei Wang (<zhiwei.wang@connect.ust.hk>)
 
 This course is open to senior undergraduates in applied mathematics, statistics, and engineering who are interested in learning from data.
 It covers hot topics in statistical learning, also known as machine learning, featured with various applications.
 
-## Tutorial files
+## Tutorial Files
 
-- T01, T02, T04
+- T01, T02, T04, T05
 
 The source files of the slides are `.Rmd` files.
 If you are interested in how to create slides through R Markdown, you can have a look at them.
@@ -55,7 +55,7 @@ renderthis::to_pdf(from = "filename.Rmd", complex_slides = TRUE, partial_slides 
 
 ## Acknowledgments
 
-- The tutorial notes are modified and supplemented based on the materials from my "elder academic brother" (大师兄), Prof. CAI Mingxuan, CityU (miss him every day 😭).
+- The tutorial notes are modified and supplemented based on the materials from my "elder academic brother" (大师兄), Prof. Mingxuan Cai, CityU (miss him every day 😭).
  
 - Slides created via Yihui Xie's R package [**xaringan**](https://github.com/yihui/xaringan).
 
