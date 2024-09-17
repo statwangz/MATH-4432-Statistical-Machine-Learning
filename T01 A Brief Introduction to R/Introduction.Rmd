@@ -1,5 +1,5 @@
 ---
-title: "T01: A brief introduction to R"
+title: "T01: A Brief Introduction to R"
 subtitle: "MATH 4432 Statistical Machine Learning"
 author: "WANG Zhiwei"
 institute: "MATH, HKUST"

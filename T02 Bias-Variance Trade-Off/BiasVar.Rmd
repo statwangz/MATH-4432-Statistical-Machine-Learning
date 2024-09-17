@@ -1,5 +1,5 @@
 ---
-title: "T02: Bias-variance trade-off"
+title: "T02: Bias-Variance Trade-Off"
 subtitle: "MATH 4432 Statistical Machine Learning"
 author: "WANG Zhiwei"
 institute: "MATH, HKUST"
