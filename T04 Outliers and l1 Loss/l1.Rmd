@@ -1,5 +1,5 @@
 ---
-title: "T04: Outliers and $l_1$ loss"
+title: "T04: Outliers and $l_1$ Loss"
 subtitle: "MATH 4432 Statistical Machine Learning"
 author: "WANG Zhiwei"
 institute: "MATH, HKUST"
